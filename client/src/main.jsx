@@ -1,19 +1,30 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './index.css'
-
 
 // Components
-import Home from './pages/Home.jsx'
-
+import Main from './components/Main.jsx';
+import Nopage from './components/NoPage.jsx';
 // Views
+import Home from './pages/Home.jsx'
+import Login from './pages/Login.jsx';
+
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Home/>
+    element: <Home/>,
+    children: [
+      {
+        path: '/',
+        element: <Main />
+      }
+    ]
   },
+  {
+    path: '/Login',
+    element: <Login/>
+  }
 
 
 ])

@@ -1,0 +1,60 @@
+@font-face {
+    font-family: title;
+    src: url(../../assets/font/Sevillana-Regular.ttf);
+}
+*{
+    padding:  0;
+    margin: 0;
+    .main-header{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        .center-div{
+            position: absolute;
+            left: 45%;
+            .logo{
+                font-family: title !important;
+                font-size: 30px;
+            }
+        }
+        .right-div{
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            > ul{
+                list-style: none;
+                display: flex;
+                align-items: center;
+                text-transform: capitalize;
+                > li {
+                    cursor: pointer;
+                    text-decoration: none;
+                    color:  black;
+                    font-weight: 500;
+                    display: flex;
+                    margin-right: 20px;
+                    margin-top: 5%;
+                }
+            }
+        }
+        .left-div{
+            display: flex;
+            align-items: center;
+            > a{
+                background-color: #6EACDA;
+                padding: 5px 10px;
+                border-radius: 7px;
+
+                display: flex;
+                align-items: center;
+                > p{
+                    font-size: 17px;
+                }
+            }
+            .language-btn{
+                cursor: pointer;
+            }
+        }
+    }
+}

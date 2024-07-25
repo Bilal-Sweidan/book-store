@@ -9,5 +9,8 @@
     "server": "cd server & npm run start"
   },
   "author": "Bilal Sweidan",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
 }
