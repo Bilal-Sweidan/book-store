@@ -9,8 +9,15 @@ const app = express()
 app.use(express.json());
 app.use(express.urlencoded())
 app.use(cors())
-// DataBase
-const {Books} = require('./modules/Schema')
+app.use(session({
+    secret: "1234567890qwertyuiopasdfghjkl;zxcvbnm,.",
+    resave: false,
+    saveUninitialized: false
+}))
+// Modules
+const { Accounts,Cards,Authors,Books } = require('./modules/Schema')
+const { Hash,Compare } = require('./modules/Hashing')
+
 app.get('/',async (req,res) => {
     try{
         const books = await Books.find()
@@ -23,8 +30,35 @@ app.get('/',async (req,res) => {
 
 app.post('/login', async (req,res) => {
     const {email,password} = req.body
-    console.log(req.body)
-    res.status(200).send(true)
+    try{
+        const account = await Accounts.findOne({ email : email })
+        if(Compare(password,account.password)){
+            session.user = account
+            res.status(200).json({'role' : account.role})
+        }else{
+            res.send("wrong password or email").status(404)
+        }
+    }catch(e){
+        console.log(e)
+        res.status(500).send(false)
+    }
+})
+
+app.post('/sign-up', async (req,res) => {
+    const {name,number,email,password} = req.body
+    try{
+        const account = await Accounts.create({
+            name: name,
+            number: number,
+            email: email,
+            password: Hash(password),
+            role: 'User'
+        })
+        res.status(200).send(true)
+    }catch(e){
+        console.log(e)
+        res.status(500).send('this account is already exict !!!!')
+    }
 })
 
 

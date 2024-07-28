@@ -8,6 +8,7 @@ import Nopage from './components/NoPage.jsx';
 // Views
 import Home from './pages/Home.jsx'
 import Login from './pages/Login.jsx';
+import Sign_up from './pages/Sign_up.jsx';
 
 import {createBrowserRouter,RouterProvider} from 'react-router-dom'
 const router = createBrowserRouter([
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: '/Login',
     element: <Login/>
+  },
+  {
+    path: '/sign-up',
+    element: <Sign_up/>
   }
 
 

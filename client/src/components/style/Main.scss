@@ -1,0 +1,36 @@
+@font-face {
+    font-family: title-2;
+    src: url(../../assets/font/EduAUVICWANTHand-VariableFont_wght.ttf);
+}
+*{
+    .main-div{
+        position: relative;
+        height: calc(100vh - 65px);
+        .left-div{
+            font-family: title-2;
+            > div {
+                width: 80%;
+                p{
+                    font-size: 30px;
+                    
+                }
+            }
+        }
+        .right-div{
+            > img{
+                filter: drop-shadow(5px 5px 5px black);
+                &.child-img{
+                    transform: scaleX(-100%);
+                    margin-left: -70px;
+                    filter: drop-shadow(-2px 0px 5px black);
+                }
+            }
+            
+        }
+    }
+    .about-books-div{
+        p{
+            font-size: 20px;
+        }
+    }
+}

@@ -7,7 +7,7 @@ import { IoLogInOutline, IoLanguageSharp } from "react-icons/io5";
 import { MdOutlineFollowTheSigns } from "react-icons/md";
 import { FaLanguage } from "react-icons/fa6";
 import { IoMdArrowDropdown } from "react-icons/io";
-
+import { MdOutlineDarkMode } from "react-icons/md";
 // react bootstrap
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
@@ -71,6 +71,9 @@ function Home() {
                     <Link to='/' className="logo text-decoration-none text-dark fw-bold">Light Store</Link>
                 </div>
                 <div className="left-div">
+                    <div className="language-btn mx-3">
+                        <MdOutlineDarkMode size={'25px'} color="#021526" className="language-btn" />
+                    </div>
                     <div className="language-btn mx-3">
                         <IoLanguageSharp size={'25px'} color="#021526" className="language-btn" />
                     </div>
