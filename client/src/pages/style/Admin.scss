@@ -1,0 +1,35 @@
+* {
+    .main-header {
+        .right-div {
+            cursor: pointer;
+        }
+    }
+    .view-section{
+        height: calc(100vh - 56px) !important;
+        overflow: hidden;
+        > div.sidebar{
+            width: 0;
+            overflow: hidden;
+            transition: 1s;
+            box-shadow:  1px 1px 5px #333;
+            ul{
+                list-style: none;
+                a{
+                    text-decoration: none;
+                    li{
+                        background-color: white;
+                        padding: 5px 10px;
+                        transition: 1s;
+                        &:hover{
+                            background-color: #6EACDA;
+                            color: white !important;
+                        }
+                    }
+                }
+            }
+            &.open{
+                width: 17%;
+            }
+        }
+    }
+}

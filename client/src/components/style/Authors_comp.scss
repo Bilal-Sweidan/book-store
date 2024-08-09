@@ -1,0 +1,15 @@
+main{
+    width: 18rem;
+    .card-img-top{
+        border-radius: 30px;
+        height: 95%;
+    }
+    .about{
+        top: calc(100% - 100px);
+        ul{
+            height: 100px;
+            list-style: none;
+            padding: 0 10px ;
+        }
+    }
+}

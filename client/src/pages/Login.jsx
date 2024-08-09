@@ -1,12 +1,13 @@
 import book from '../assets/Book.png'
 import './style/Login.scss'
 
-import { Link  } from 'react-router-dom';
+import { Link, useNavigate  } from 'react-router-dom';
 // icons
 import { IoLogInOutline  } from "react-icons/io5";
 import { FcGoogle } from "react-icons/fc";
 import axios from 'axios'
 export default function Login() {
+    const navigate = useNavigate()
     function fetch_data(e){
         const data = e.target
         const formData = new FormData(data)
@@ -14,6 +15,13 @@ export default function Login() {
         axios.post('http://localhost:3000/login',jsonForm)
         .then(res => {
             console.log(res.data)
+            if(res.data.role == "Admin"){
+                navigate('/A')
+            }else if(res.data.role == 'Publisher'){
+                navigate('/P')
+            }else{
+                navigate('/U')
+            }
         })
         .catch(err => {
             console.log(err);

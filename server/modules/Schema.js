@@ -44,39 +44,39 @@ const Book = mongoose.Schema({
     cover_image: String,
     about: {
         type: String,
-        require: true
+        required: true
     },
     rate: {
         type: Number,
-        require: true
+        required: true
     },
     createdAt: {
         type: Date,
-        require: true
+        required: true
     },
     department: {
         type: Array,
-        require: true
+        required: true
     },
     file_size: {
         type: Number,
-        require: true
+        required: true
     },
     pages: {
         type: Number,
-        require: true
+        required: true
     },
     file_type: {
         type: String,
-        require: true
+        required: true
     },
     fame:{
         type: Number,
-        require: true
+        required: true
     },
     price: {
         type: Number,
-        require: true
+        required: true
     }
 })
 
