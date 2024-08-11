@@ -40,19 +40,16 @@ const Card = mongoose.Schema({
 
 const Book = mongoose.Schema({
     name: String,
-    author: String,
+    author: String, // id of author data
     cover_image: String,
     about: {
         type: String,
-        required: true
     },
     rate: {
         type: Number,
-        required: true
     },
     createdAt: {
         type: Date,
-        required: true
     },
     department: {
         type: Array,
@@ -60,7 +57,6 @@ const Book = mongoose.Schema({
     },
     file_size: {
         type: Number,
-        required: true
     },
     pages: {
         type: Number,
@@ -68,11 +64,9 @@ const Book = mongoose.Schema({
     },
     file_type: {
         type: String,
-        required: true
     },
     fame:{
         type: Number,
-        required: true
     },
     price: {
         type: Number,

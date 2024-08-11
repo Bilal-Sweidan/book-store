@@ -53,7 +53,8 @@ export default function Admin() {
             <section className="view-section d-flex w-100">
                 <div className="sidebar open h-100 py-3">
                     <ul className="text-capitalize p-0">
-                        <Link to='/A/add-book'><li>add book</li></Link>
+                        <Link to='/A/add-book'><li>new book</li></Link>
+                        <Link to='/A/add-author'><li>new author</li></Link>
                     </ul>
                 </div>
                 <div className="viewer px-3 py-3">

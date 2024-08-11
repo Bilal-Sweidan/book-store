@@ -17,6 +17,8 @@ app.use(session({
 // Modules
 const { Accounts,Cards,Authors,Books } = require('./modules/Schema')
 const { Hash,Compare } = require('./modules/Hashing')
+// Routes
+const Admin_R = require('./Routes/Admin_R')
 
 app.get('/',async (req,res) => {
     try{
@@ -61,6 +63,8 @@ app.post('/sign-up', async (req,res) => {
     }
 })
 
+// routes
+app.use('/A',Admin_R);
 
 
 app.listen(process.env.PORT,() => {

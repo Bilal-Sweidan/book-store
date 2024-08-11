@@ -7,8 +7,10 @@
     .view-section{
         height: calc(100vh - 56px) !important;
         overflow: hidden;
+        $sidebar-width: 0%;
         > div.sidebar{
-            width: 0;
+            z-index: 100000000000;
+            width: $sidebar-width;
             overflow: hidden;
             transition: 1s;
             box-shadow:  1px 1px 5px #333;
@@ -28,8 +30,14 @@
                 }
             }
             &.open{
-                width: 17%;
+                $sidebar-width: 17%;
+                width: $sidebar-width;
             }
+        }
+        > .viewer{
+            width: calc(100% - $sidebar-width);
+            background: linear-gradient(151deg, rgba(255,255,255,1) 39%, rgba(110,172,218,1) 100%, rgba(255,255,255,1) 100%);
+            // background: linear-gradient(151deg, rgba(255,255,255,1) 16%, rgba(110,172,218,1) 100%, rgba(255,255,255,1) 100%);
         }
     }
 }
