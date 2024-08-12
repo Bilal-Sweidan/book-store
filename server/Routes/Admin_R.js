@@ -2,22 +2,55 @@ const express = require('express')
 const router = express.Router()
 
 // modules
-const { cover } = require('../modules/Multer') // multer
+const { upload } = require('../modules/Multer') // multer
 // database
-const { Books } = require('../modules/Schema')
+const { Books, Authors } = require('../modules/Schema')
 
-router.post('/add-book',cover.single("cover"),async (req,res,next) => {
+router.get('/add-book',async (req,res,next) => {
+    try{
+        const authors = await Authors.find().select('_id arabic_name english_name')
+        res.status(200).json(authors)
+    }catch(e){
+        res.status(401).send(false)
+    }
+})
+
+router.post('/add-book',upload.fields([{name: 'cover' , maxCount: 1},{ name: 'book', maxCount : 1}]),async (req,res,next) => {
     const {name ,price,department,pages_number,author,description} = req.body
-    console.log(req.file.filename)
-    const book = await Books.create({
-        name: name,
-        price: price,
-        author: author,
-        department: department,
-        pages: pages_number,
-        cover_image: req.file.filename,
-        about: description
-    })
+    try{
+        const book = await Books.create({
+            name: name,
+            price: price,
+            author: author,
+            department: department,
+            pages: pages_number,
+            cover_image: req.files['cover'][0].filename,
+            book_file: req.files['book'][0].filename,
+            file_size: req.files['book'][0].size / (1024*1024) ,
+            file_type: req.files['book'][0].mimetype,
+            about: description,
+        })
+        res.status(200).send(true)
+    }catch(e){
+        res.status(401).send(false)
+    }
+})
+
+router.post('/add-author',upload.single('author_photo'),async (req,res,next) => {
+    const {arabic_name,english_name , about} = req.body
+    try{
+        const author = await Authors.create({
+            arabic_name: arabic_name,
+            english_name: english_name,
+            about: about,
+            photo: req.file.filename
+        })
+        console.log(author)
+        res.status(200).send(true)
+    }catch(e){
+        console.log(e)
+        res.status(401).send(false)
+    }
 })
 
 module.exports = router

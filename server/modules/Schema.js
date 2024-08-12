@@ -71,15 +71,18 @@ const Book = mongoose.Schema({
     price: {
         type: Number,
         required: true
+    },
+    book_file: {
+        type: String,
+        required: true,
     }
 })
 
 const Author = mongoose.Schema({
-    name: String,
+    arabic_name: String,
+    english_name: String,
     about: String,
-    bornday: Date,
-    deadday: Date,
-    work: String
+    photo: String
 })
 
 const Books = mongoose.model('Books',Book)
