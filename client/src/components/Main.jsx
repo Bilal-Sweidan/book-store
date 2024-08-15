@@ -1,21 +1,33 @@
 import './style/Main.scss'
 import { Link, Navigate, useNavigate } from 'react-router-dom';
+import axios from 'axios'
 // images
 import reader from '../assets/reader2.png'
 import readerChild from '../assets/child reader.png'
-import books from '../assets/best books.webp'
+import books_img from '../assets/best books.webp'
 // icons 
 import { GiBlackBook, GiBookmarklet } from "react-icons/gi";
 import { IoSearch } from "react-icons/io5";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 // Components
 import Books_card from './Books_card_comp';
-import Authors_card from './Authors_comp'
+
+
+
 
 export default function Main() {
     const navigate = useNavigate()
     const [searchWord, setSearchWord] = useState()
+    const [book,setBook] = useState()
 
+    const [books,setBooks] = useState([])
+    useEffect(() => {
+        axios.get('http://localhost:3000/')
+        .then(res => {
+            setBooks(res.data)
+        })
+    },[])
+    console.log(books)
 
     return (
         <>
@@ -39,7 +51,7 @@ export default function Main() {
                         </form>
 
                         <div className='w-100 d-flex align-items-center justify-content-center mt-5'>
-                            <Link to="/search/" className='go-btn btn btn-primary px-5 fw-bold'>let's go</Link>
+                            <Link to="/search" className='go-btn btn btn-primary px-5 fw-bold'>let's go</Link>
                         </div>
                     </div>
                 </div>
@@ -52,7 +64,7 @@ export default function Main() {
             {/* about books */}
             <div className='about-books-div d-flex w-100 bg-dark vh-100'>
                 <div className='col-6  d-flex align-items-center justify-content-center'>
-                    <img src={books} alt="" className='w-100 vh-100' />
+                    <img src={books_img} alt="" className='w-100 vh-100' />
                 </div>
                 <div className='text-center col-6 text-light p-5 d-flex align-items-center justify-content-center'>
                     <div>
@@ -88,13 +100,11 @@ export default function Main() {
             <div className='w-100 px-5 pt-4 vh-100'>
                 <h2 className='text-center mt-3 text-uppercase'>explore our books</h2>
                 <div className='books d-flex justify-content-center gap-3 flex-wrap px-5 py-5'>
-                    <Books_card />
-                    <Books_card />
-                    <Books_card />
-                    <Books_card />
-                    <Books_card />
-                    <Books_card />
-                    <Books_card />
+                    {
+                        books.map(book => (
+                            <Books_card key={book._id} data={book}/>
+                        ))
+                    }
                 </div>
             </div>
         </>

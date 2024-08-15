@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 // icons
 import { BsSendArrowUp } from "react-icons/bs";
 import { TbPencilPlus } from "react-icons/tb";
-import { GiBookmarklet } from "react-icons/gi";
+import { GiBookshelf } from "react-icons/gi";
 export default function AddBook_comp() {
     const [loading, setLoading] = useState(false)
     function fetchData(e) {
@@ -39,7 +39,7 @@ export default function AddBook_comp() {
 
     return (
         <>
-            <h2 className="text-capitalize d-flex align-items-center"><GiBookmarklet size={"50px"} color='#03346E' /> add new book</h2>
+            <h2 className="text-capitalize d-flex align-items-end"><GiBookshelf size={"50px"} color='#03346E' /> add new book</h2>
             <form action="" method='dialog' className="add-book d-flex text-capitalize w-100 gap-4" onSubmit={fetchData}>
                 <div className='w-50'>
                     <label htmlFor="" className="mb-1">book name</label>
@@ -50,6 +50,7 @@ export default function AddBook_comp() {
                         <option value="history">history</option>
                         <option value="technology">technology</option>
                         <option value="computer">computer</option>
+                        <option value="islamic">islamic</option>
                     </select>
 
                     <label htmlFor="" className="mb-1">book pages number</label>

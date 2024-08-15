@@ -1,5 +1,6 @@
 * {
     .main-header {
+        // background-color: #021526 !important;
         .right-div {
             cursor: pointer;
         }
@@ -8,6 +9,7 @@
         height: calc(100vh - 56px) !important;
         overflow: hidden;
         $sidebar-width: 0%;
+        background: linear-gradient(151deg, rgba(255,255,255,1) 39%, rgba(110,172,218,1) 100%, rgba(255,255,255,1) 100%);
         > div.sidebar{
             z-index: 100000000000;
             width: $sidebar-width;
@@ -19,11 +21,10 @@
                 a{
                     text-decoration: none;
                     li{
-                        background-color: white;
                         padding: 5px 10px;
-                        transition: 1s;
+                        transition: .5s;
                         &:hover{
-                            background-color: #6EACDA;
+                            background-color: #b8b8b89a;
                             color: white !important;
                         }
                     }
@@ -36,8 +37,6 @@
         }
         > .viewer{
             width: calc(100% - $sidebar-width);
-            background: linear-gradient(151deg, rgba(255,255,255,1) 39%, rgba(110,172,218,1) 100%, rgba(255,255,255,1) 100%);
-            // background: linear-gradient(151deg, rgba(255,255,255,1) 16%, rgba(110,172,218,1) 100%, rgba(255,255,255,1) 100%);
         }
     }
 }

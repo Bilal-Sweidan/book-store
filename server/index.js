@@ -20,15 +20,24 @@ const { Hash,Compare } = require('./modules/Hashing')
 // Routes
 const Admin_R = require('./Routes/Admin_R')
 
+
 app.get('/',async (req,res) => {
     try{
         const books = await Books.find()
+        console.log(books)
         res.status(200).json(books)
     }catch(e){
         console.log(e)
         res.status(404)
     }
 })
+
+app.post('/getAuthor_name', async (req,res) => {
+    const author = await Authors.findOne({ "_id" : (req.body.author_id) })
+    console.log(author)
+    res.json(author)
+})
+
 
 app.post('/login', async (req,res) => {
     const {email,password} = req.body
