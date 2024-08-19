@@ -6,10 +6,18 @@ import { Link,Navigate, useNavigate  } from 'react-router-dom';
 import { IoLogInOutline  } from "react-icons/io5";
 import { FcGoogle } from "react-icons/fc";
 import axios from 'axios'
-import { useState } from 'react';
-
+import { useState , useEffect } from 'react';
+import { useUser } from '../Context/Contexts';
 export default function Sign_up() {
     const navigate = useNavigate();
+
+    const {user} = useUser()
+    useEffect(() => {
+        if(user){
+            navigate('/')
+        }
+    },[])
+
     function fetch_data(e){
         const data = e.target
         const formData = new FormData(data)

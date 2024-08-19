@@ -45,6 +45,14 @@ export default function AddBook_comp() {
                     <label htmlFor="" className="mb-1">book name</label>
                     <input type="text" className="form-control mb-3" name='name' placeholder="book name" />
 
+                    <label htmlFor="" className="mb-1">Language of book</label>
+                    <select name="language" id="" className="form-select mb-3">
+                        <option value="Arabic">Arabic</option>
+                        <option value="English">English</option>
+                        <option value="Russian">Russian</option>
+                        <option value="chines">chines</option>
+                    </select>
+
                     <label htmlFor="" className="mb-1">departments</label>
                     <select name="department" id="" className="form-select mb-3">
                         <option value="history">history</option>
@@ -72,12 +80,13 @@ export default function AddBook_comp() {
                     <label htmlFor="" className="mb-1">book price</label>
                     <input type="number" name="price" id="" className="form-control mb-3" placeholder={0} />
 
-                    <label htmlFor="" className="mb-1">book cover </label>
-                    <input type="file" name="cover" id="" className="form-control mb-3" />
 
                     <button type="submit" className="btn btn-success text-capitalize" disabled={loading}><BsSendArrowUp size={"20px"} className="mx-2" />send data</button>
                 </div>
                 <div className='w-50'>
+                    <label htmlFor="" className="mb-1">book cover </label>
+                    <input type="file" name="cover" id="" className="form-control mb-3" />
+
                     <label htmlFor="" className="mb-1">book file</label>
                     <input type="file" name="book" id="" className="form-control mb-3" />
 

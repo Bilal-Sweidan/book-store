@@ -1,6 +1,7 @@
 import './style/Main.scss'
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import { useCookies } from 'react-cookie'
 // images
 import reader from '../assets/reader2.png'
 import readerChild from '../assets/child reader.png'
@@ -16,18 +17,16 @@ import Books_card from './Books_card_comp';
 
 
 export default function Main() {
-    const navigate = useNavigate()
+    const [books, setBooks] = useState([])
     const [searchWord, setSearchWord] = useState()
-    const [book,setBook] = useState()
-
-    const [books,setBooks] = useState([])
+    const navigate = useNavigate()
+    
     useEffect(() => {
         axios.get('http://localhost:3000/')
-        .then(res => {
-            setBooks(res.data)
-        })
-    },[])
-    console.log(books)
+            .then(res => {
+                setBooks(res.data)
+            })
+    }, [])
 
     return (
         <>
@@ -75,7 +74,7 @@ export default function Main() {
                             There are any success person in the world you can not find them reader so if you want
                             to go in from success door you must start reading.
                         </p>
-                        <Link to='/search/' className='mt-4 px-4 btn btn-success text-capitalize'>find truth now <GiBookmarklet size={'25px'} color='#021526' /></Link>
+                        <Link to='/search' className='mt-4 px-4 btn btn-success text-capitalize'>find truth now <GiBookmarklet size={'25px'} color='#021526' /></Link>
                     </div>
                 </div>
             </div>
@@ -102,7 +101,7 @@ export default function Main() {
                 <div className='books d-flex justify-content-center gap-3 flex-wrap px-5 py-5'>
                     {
                         books.map(book => (
-                            <Books_card key={book._id} data={book}/>
+                            <Books_card key={book._id} data={book} />
                         ))
                     }
                 </div>

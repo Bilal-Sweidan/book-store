@@ -1,4 +1,5 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import axios from 'axios'
 // sass file
 import './style/Home.scss'
 // sass file for admin only
@@ -10,7 +11,9 @@ import { IoMdList, IoMdArrowDropup } from "react-icons/io";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { CiBookmarkPlus } from "react-icons/ci";
 import { RiQuillPenLine } from "react-icons/ri";
-
+import { useCookies } from "react-cookie";
+// userContext
+import { useUser } from "../Context/Contexts";
 
 function Language_list() {
     return (
@@ -24,8 +27,22 @@ function Language_list() {
     )
 }
 export default function Admin() {
+    const path = useLocation().pathname
+    const navigate = useNavigate()
+
+    const {user,setUser,logout} = useUser()
+
+    // async function logout() {
+    //     const { data } = await axios.get('http://localhost:3000/logout', { withCredentials: true })
+    //     if (data.success) {
+    //         setUser(null)
+    //         navigate('/Login')
+    //     }
+    // }
+    
     return (
         <>
+
             <header className="main-header text-bg-dark px-3 py-2 w-100">
                 <div className="right-div">
                     <IoMdList size={'30px'} onClick={() => document.querySelector('.sidebar').classList.toggle('open')} />
@@ -42,7 +59,10 @@ export default function Admin() {
                     </div>
                     <Language_list className=" d-none" />
                     <Link to="/Login" className="d-flex justify-content-center align-items-center text-decoration-none text-transform-capitalize">
-                        <p className=" text-light m-0 px-2 fs-s fw-bold">Log out</p>
+                        <p className=" text-light m-0 px-2 fs-s fw-bold" onClick={() => {
+                            logout()
+                            setUser(null)
+                        }}>Log out</p>
                         <MdOutlineFollowTheSigns size={"30px"} color="white" title="sign in" />
                     </Link>
                 </div>
@@ -52,7 +72,7 @@ export default function Admin() {
                     <p className="mx-2 my-0 h5">Books</p>
                     <hr className="mx-2" />
                     <ul className="text-capitalize p-0">
-                        <Link to='/A/add-book' className="">
+                        <Link to='/add-book' className="">
                             <li className="d-flex gap-2 align-items-center mb-2 mx-2 rounded">
                                 <div className="h-100 px-2 py-1 text-bg-light rounded" >
                                     <CiBookmarkPlus color="#03346E" size={"20px"} />
@@ -60,7 +80,7 @@ export default function Admin() {
                                 new book
                             </li>
                         </Link>
-                        <Link to='/A/add-author'>
+                        <Link to='/add-author'>
                             <li className="d-flex gap-2 align-items-center mb-2 mx-2 rounded">
                                 <div className=" h-100 px-2 py-1 text-bg-light rounded">
                                     <RiQuillPenLine color="#03346E" size={"20px"} />
@@ -71,6 +91,13 @@ export default function Admin() {
                     </ul>
                 </div>
                 <div className="viewer px-3 py-3">
+                    {
+                        path === '/' && (
+                            <>
+                                admin page
+                            </>
+                        )
+                    }
                     <Outlet />
                 </div>
             </section>
