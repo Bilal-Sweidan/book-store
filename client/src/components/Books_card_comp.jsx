@@ -1,4 +1,5 @@
 import './style/Books_card_comp.scss'
+import { Link } from 'react-router-dom'
 // axios 
 import axios from 'axios'
 // images
@@ -15,7 +16,7 @@ export default function Books_card_comp({data}) {
         })
     },[])
     return (
-        <div className='cards d-flex p-1 text-center'>
+        <Link to={`/${data.name}`} className='cards d-flex p-1 text-center'>
             <div className='w-50 h-100 p-3'>
                 <img src={new URL(`../assets/Books images/${data.cover_image}`, import.meta.url).href} alt="" className='h-100' />
             </div>
@@ -41,6 +42,6 @@ export default function Books_card_comp({data}) {
                     </div>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }

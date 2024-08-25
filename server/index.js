@@ -26,8 +26,7 @@ app.use(session({
 // Modules
 const { Accounts, Cards, Authors, Books } = require('./modules/Schema')
 const { Hash, Compare } = require('./modules/Hashing')
-// Routes
-const Admin_R = require('./Routes/Admin_R')
+
 
 
 app.get('/', async (req, res) => {
@@ -58,7 +57,7 @@ app.post('/login', async (req, res, next) => {
         const account = await Accounts.findOne({ email: email })
         if (account) {
             if (Compare(password, account.password)) {
-                const accessToken = jwt.sign({ account }, process.env.ACCESS_TOKEN_SECRET) //, { expiresIn: '1d' }
+                const accessToken = jwt.sign({ account }, process.env.ACCESS_TOKEN_SECRET,{expiresIn : '1d'}) //, { expiresIn: '1d' }
                 res.cookie("token", accessToken, {
                     withCredentials: true,
                     httpOnly: false,
@@ -121,8 +120,11 @@ app.post('/sign-up', async (req, res) => {
     }
 })
 
-// routes
+// Routes
+const Admin_R = require('./Routes/Admin_R')
+const Home = require('./Routes/Home')
 app.use('/A', Admin_R);
+app.use('/',Home)
 
 
 app.listen(process.env.PORT, () => {

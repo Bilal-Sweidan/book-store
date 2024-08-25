@@ -4,22 +4,25 @@ import axios from 'axios'
 import { useCookies } from 'react-cookie'
 
 
-const UserContext = createContext()
+const UserContext = createContext(null)
 
 export const UserProvider = ({ children }) => {
 
-    const [cookies, removeCookies] = useCookies([])
+    const [cookies, removeCookies] = useCookies()
     const [user, setUser] = useState(null)
+    const [isLoading,setLoading] = useState(false)
     useEffect(() => {
         const verifyCookies = async () => {
             if (!cookies.token) {
                 return null
             }
+            setLoading(true)
             const { data } = await axios.post('http://localhost:3000/', {}, {
                 withCredentials: true
             })
             const { account } = data
             setUser(account)
+            setLoading(false)
             console.log('check the user')
         }
         verifyCookies()
@@ -48,17 +51,17 @@ export const UserProvider = ({ children }) => {
         const { data } = await axios.get('http://localhost:3000/logout', { withCredentials: true })
         if (data.success) {
             setUser(null)
-            console.log("logged out")
-            // navigate('/Login')
         }
     }
     return (
-        <UserContext.Provider value={{ user, setUser, fetch_data, logout,isPending }}>
+        <UserContext.Provider value={{ user, setUser, fetch_data, logout,isPending,isLoading }}>
             {children}
         </UserContext.Provider>
     )
 }
 
-export function useUser() {
-    return useContext(UserContext)
-}
+export default UserContext
+// export function useUser() {
+//     return useContext(UserContext)
+// }
+

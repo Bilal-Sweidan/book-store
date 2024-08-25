@@ -1,7 +1,6 @@
 import './style/Main.scss'
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import axios from 'axios'
-import { useCookies } from 'react-cookie'
 // images
 import reader from '../assets/reader2.png'
 import readerChild from '../assets/child reader.png'
@@ -9,10 +8,12 @@ import books_img from '../assets/best books.webp'
 // icons 
 import { GiBlackBook, GiBookmarklet } from "react-icons/gi";
 import { IoSearch } from "react-icons/io5";
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 // Components
 import Books_card from './Books_card_comp';
 
+// context
+import UserContext from '../Context/Contexts'
 
 
 
@@ -20,7 +21,8 @@ export default function Main() {
     const [books, setBooks] = useState([])
     const [searchWord, setSearchWord] = useState()
     const navigate = useNavigate()
-    
+
+
     useEffect(() => {
         axios.get('http://localhost:3000/')
             .then(res => {
@@ -28,6 +30,7 @@ export default function Main() {
             })
     }, [])
 
+    const { user } = useContext(UserContext)
     return (
         <>
             <div className="main-div bg-light d-flex w-100 p-2">
@@ -45,7 +48,9 @@ export default function Main() {
                         <form action="" method='dialog'>
                             <label htmlFor="" className='d-flex mt-5'>
                                 <input type="text" name="search" id="" placeholder='Seach.....' className='form-control border-3' onChange={(e) => setSearchWord(e.target.value)} />
-                                <button type='submit' className='btn btn-primary px-4' onClick={() => navigate(`/search/${searchWord}`)}><IoSearch size={'30px'} /> </button>
+                                <button type='submit' className='btn btn-primary px-4' onClick={() => {
+                                    navigate(`/search`)
+                                }}><IoSearch size={'30px'} /> </button>
                             </label>
                         </form>
 
@@ -79,22 +84,22 @@ export default function Main() {
                 </div>
             </div>
             {/* some authors and Books */}
-            <div className=' w-100 pt-5'>
+            {/* <div className=' w-100 pt-5'>
                 <div className='authors-div d-flex gap-4 h-50 '>
-                    {/* <Authors_card />
                     <Authors_card />
                     <Authors_card />
                     <Authors_card />
-                    <Authors_card /> */}
+                    <Authors_card />
+                    <Authors_card />
                 </div>
                 <div className='best-books-div d-flex gap-3 h-50'>
-                    {/* <Authors_card />
                     <Authors_card />
                     <Authors_card />
                     <Authors_card />
-                    <Authors_card /> */}
+                    <Authors_card />
+                    <Authors_card />
                 </div>
-            </div>
+            </div> */}
             {/* Books */}
             <div className='w-100 px-5 pt-4 vh-100'>
                 <h2 className='text-center mt-3 text-uppercase'>explore our books</h2>
@@ -103,6 +108,14 @@ export default function Main() {
                         books.map(book => (
                             <Books_card key={book._id} data={book} />
                         ))
+                    }
+                </div>
+                <div className='w-100 d-flex align-items-center justify-content-center'>
+                    {
+                        user ? 
+                        <Link to="/search" className='text-center text-capitalize btn btn-primary '>get more books</Link>
+                        :
+                        <Link to="/Login" className='text-center text-capitalize btn btn-primary '>get more books</Link>
                     }
                 </div>
             </div>

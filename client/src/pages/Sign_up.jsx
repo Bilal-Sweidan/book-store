@@ -6,12 +6,12 @@ import { Link,Navigate, useNavigate  } from 'react-router-dom';
 import { IoLogInOutline  } from "react-icons/io5";
 import { FcGoogle } from "react-icons/fc";
 import axios from 'axios'
-import { useState , useEffect } from 'react';
-import { useUser } from '../Context/Contexts';
+import { useState , useEffect, useContext } from 'react';
+import UserContext from '../Context/Contexts';
 export default function Sign_up() {
     const navigate = useNavigate();
 
-    const {user} = useUser()
+    const {user} = useContext(UserContext)
     useEffect(() => {
         if(user){
             navigate('/')

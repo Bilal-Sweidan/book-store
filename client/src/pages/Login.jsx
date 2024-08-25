@@ -3,9 +3,9 @@ import book from '../assets/Book.png'
 import './style/Login.scss'
 
 import axios from 'axios'
-import { useEffect, useState } from 'react';
-import { useUser } from '../Context/Contexts';
-import { Link, useNavigate } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import UserContext from '../Context/Contexts';
+import { Link, useNavigate,redirect } from 'react-router-dom';
 import { useCookies } from 'react-cookie'
 // icons
 import { IoLogInOutline } from "react-icons/io5";
@@ -14,11 +14,12 @@ import { FcGoogle } from "react-icons/fc";
 export default function Login() {
     const navigate = useNavigate()
 
-    const {user,fetch_data,isPending} = useUser()
-    const [cookies,removeCookies] = useCookies()
-    if(user){
-        navigate('/')
-    }
+    const {user,fetch_data,isPending} = useContext(UserContext)
+    useEffect(() => {
+        if(user){
+            navigate('/')
+        }
+    })
 
     return (
         <>
