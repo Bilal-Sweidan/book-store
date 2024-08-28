@@ -6,24 +6,24 @@ const Account = mongoose.Schema({
         required: true,
         unique: true,
         trim: true,
-        lowercase:true
+        lowercase: true
     },
     email: {
         type: String,
         required: true,
-        unique : true,
-        trim : true,
+        unique: true,
+        trim: true,
         lowercase: true
     },
     password: {
-        type : String,
+        type: String,
         trim: true,
         required: true,
     },
     number: {
         type: String,
         required: true,
-        unique : true,
+        unique: true,
         trim: true
     },
     role: {
@@ -39,7 +39,12 @@ const Card = mongoose.Schema({
 })
 
 const Book = mongoose.Schema({
-    name: String,
+    name: {
+        type: String,
+        required: true,
+        trim: true,
+        unique: true
+    },
     author: String, // id of author data
     cover_image: String,
     about: {
@@ -50,6 +55,7 @@ const Book = mongoose.Schema({
     },
     createdAt: {
         type: Date,
+        default: Date.now()
     },
     department: {
         type: Array,
@@ -65,7 +71,7 @@ const Book = mongoose.Schema({
     file_type: {
         type: String,
     },
-    fame:{
+    fame: {
         type: Number,
     },
     price: {
@@ -75,6 +81,10 @@ const Book = mongoose.Schema({
     book_file: {
         type: String,
         required: true,
+    },
+    language: {
+        type: String,
+        trim: true
     }
 })
 
@@ -85,10 +95,10 @@ const Author = mongoose.Schema({
     photo: String
 })
 
-const Books = mongoose.model('Books',Book)
-const Accounts = mongoose.model('Accounts',Account)
-const Cards = mongoose.model('Cards',Card)
-const Authors = mongoose.model('Authors',Author)
+const Books = mongoose.model('Books', Book)
+const Accounts = mongoose.model('Accounts', Account)
+const Cards = mongoose.model('Cards', Card)
+const Authors = mongoose.model('Authors', Author)
 
 
-module.exports = { Accounts,Books,Cards,Authors }
+module.exports = { Accounts, Books, Cards, Authors }

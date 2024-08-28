@@ -19,7 +19,10 @@
         .right-div{
             > img{
                 filter: drop-shadow(5px 5px 5px black);
+                animation-name: margin_images;
+                animation-timeline: scroll();
                 &.child-img{
+                    
                     transform: scaleX(-100%);
                     margin-left: -70px;
                     filter: drop-shadow(-2px 0px 5px black);
@@ -29,8 +32,39 @@
         }
     }
     .about-books-div{
+        animation-name: onScroll;
+        animation-timeline: scroll();
+
         p{
             font-size: 20px;
         }
+    }
+}
+@keyframes onScroll {
+    0%{
+        opacity: 1;
+    }
+    25%{
+        opacity: 1;
+    }
+    50%{
+        opacity: 1;
+    }
+    75%{
+        opacity: .6;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+@keyframes margin_images {
+    50%{
+        margin-left: 100px;
+    }
+    75%{
+        margin-left: 200px;
+    }
+    100%{
+        margin-left: 400px;
     }
 }

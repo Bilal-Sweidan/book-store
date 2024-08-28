@@ -51,13 +51,21 @@ export default function User() {
                         <IoLanguageSharp size={'25px'} color="#021526" className="language-btn" onClick={() => document.querySelector('.prompt-list').classList.toggle('d-none')} />
                     </div>
                     <Language_list className=" d-none" />
-                    <Link to="/Login" className="d-flex justify-content-center align-items-center text-decoration-none text-transform-capitalize">
-                        <p className=" text-light m-0 px-2 fs-s fw-bold" onClick={() => {
-                            logout()
-                            setUser(null)
-                        }}>Log out</p>
-                        <MdOutlineFollowTheSigns size={"30px"} color="white" title="sign in" />
-                    </Link>
+                    {
+                        !user ?
+                            <Link to="/Login" className="d-flex justify-content-center align-items-center text-decoration-none text-transform-capitalize">
+                                <p className=" text-light m-0 px-2 fs-s fw-bold">Log in</p>
+                                <MdOutlineFollowTheSigns size={"30px"} color="white" title="sign in" />
+                            </Link>
+                            :
+                            <Link to="/Login" className="d-flex justify-content-center align-items-center text-decoration-none text-transform-capitalize">
+                                <p className=" text-light m-0 px-2 fs-s fw-bold" onClick={() => {
+                                    logout()
+                                    setUser(null)
+                                }}>Log out</p>
+                                <MdOutlineFollowTheSigns size={"30px"} color="white" title="sign in" />
+                            </Link>
+                    }
                 </div>
             </header>
             <section className="display-section">
@@ -66,9 +74,6 @@ export default function User() {
                 }
                 <Outlet />
             </section>
-            {/* <footer className="footer w-100 vh-25 text-bg-primary">
-                copy right for bilal sweidan
-            </footer> */}
         </>
     )
 }

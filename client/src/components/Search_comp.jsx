@@ -1,10 +1,39 @@
 import axios from 'axios'
-import { useEffect } from 'react'
+import { useEffect,useState } from 'react'
 
+// components
+import Books_card from './Books_card_comp'
 export default function Search_comp() {
-    useEffect(()=> {
-    })
+    const [books, setBooks] = useState([])
+    useEffect(() => {
+        axios.get('http://localhost:3000/')
+            .then(res => {
+                setBooks(res.data)
+            })
+    }, [])
     return (
-        <div>Search_comp</div>
+        <>
+            <main className='w-100 mh-100'>
+                <div className='search-div w-100 bg-dark position-abolute'>
+                    
+                </div>
+                <div className='w-100 p-5'>
+                    <form action="" className='d-flex w-100'>
+                        <div className='w-50 m-auto d-flex align-items-center justify-content-center'>
+                            <input type="search" className='form-control' placeholder='search....' />
+                            <button type='submit' className='btn btn-primary'>search</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div className='books-div d-flex justify-content-center gap-4 px-5 flex-wrap'>
+                    {
+                        books.map(book => (
+                            <Books_card key={book._id} data={book} />
+                        ))
+                    }
+                </div>
+            </main>
+        </>
     )
 }

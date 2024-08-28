@@ -18,11 +18,11 @@ import UserContext from '../Context/Contexts'
 
 
 export default function Main() {
-    const [books, setBooks] = useState([])
     const [searchWord, setSearchWord] = useState()
     const navigate = useNavigate()
-
-
+    
+    
+    const [books, setBooks] = useState([])
     useEffect(() => {
         axios.get('http://localhost:3000/')
             .then(res => {
@@ -33,7 +33,7 @@ export default function Main() {
     const { user } = useContext(UserContext)
     return (
         <>
-            <div className="main-div bg-light d-flex w-100 p-2">
+            <div className="main-div bg-light d-flex w-100 p-2 ">
                 <div className="left-div col-6  d-flex align-items-center justify-content-center">
                     <div>
                         <h2>
@@ -49,7 +49,7 @@ export default function Main() {
                             <label htmlFor="" className='d-flex mt-5'>
                                 <input type="text" name="search" id="" placeholder='Seach.....' className='form-control border-3' onChange={(e) => setSearchWord(e.target.value)} />
                                 <button type='submit' className='btn btn-primary px-4' onClick={() => {
-                                    navigate(`/search`)
+                                    navigate(`/my/search`)
                                 }}><IoSearch size={'30px'} /> </button>
                             </label>
                         </form>

@@ -4,13 +4,13 @@ import axios from 'axios'
 import { useCookies } from 'react-cookie'
 
 
-const UserContext = createContext(null)
+const UserContext = createContext()
 
 export const UserProvider = ({ children }) => {
 
     const [cookies, removeCookies] = useCookies()
     const [user, setUser] = useState(null)
-    const [isLoading,setLoading] = useState(false)
+    const [isLoading,setLoading] = useState(true)
     useEffect(() => {
         const verifyCookies = async () => {
             if (!cookies.token) {

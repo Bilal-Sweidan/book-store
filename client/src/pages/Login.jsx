@@ -5,7 +5,7 @@ import './style/Login.scss'
 import axios from 'axios'
 import { useContext, useEffect, useState } from 'react';
 import UserContext from '../Context/Contexts';
-import { Link, useNavigate,redirect } from 'react-router-dom';
+import { Link, useNavigate,Navigate, useLocation } from 'react-router-dom';
 import { useCookies } from 'react-cookie'
 // icons
 import { IoLogInOutline } from "react-icons/io5";
@@ -15,11 +15,17 @@ export default function Login() {
     const navigate = useNavigate()
 
     const {user,fetch_data,isPending} = useContext(UserContext)
-    useEffect(() => {
-        if(user){
-            navigate('/')
-        }
-    })
+    // useEffect(() => {
+    //     if(user?.role === "User"){
+    //         navigate('/')
+    //     }else if(user?.role === 'Admin'){
+    //         navigate('/A')
+    //     }
+    // })
+    const location = useLocation()
+    if(user){
+        return <Navigate to="/" state={{from: location}} replace />
+    }
 
     return (
         <>

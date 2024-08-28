@@ -6,15 +6,19 @@ import axios from 'axios'
 
 // icons 
 import { IoStar } from "react-icons/io5";
-import { useEffect, useState } from 'react';
-export default function Books_card_comp({data}) {
-    const [author,setAuthor] = useState([])
+import { useContext, useEffect, useState } from 'react';
+import UserContext from '../Context/Contexts';
+
+
+export default function Books_card_comp({ data }) {
+    const [author, setAuthor] = useState([])
     useEffect(() => {
-        axios.post('http://localhost:3000/getAuthor_name',{author_id : data.author})
-        .then(res => {
-            setAuthor(res.data)
-        })
-    },[])
+        axios.post('http://localhost:3000/getAuthor_name', { author_id: data.author })
+            .then(res => {
+                setAuthor(res.data)
+            })
+    }, [])
+    const { user } = useContext(UserContext)
     return (
         <Link to={`/${data.name}`} className='cards d-flex p-1 text-center'>
             <div className='w-50 h-100 p-3'>
@@ -25,7 +29,7 @@ export default function Books_card_comp({data}) {
                     <li><h4>{data.name}</h4></li>
                     <li className=''>{author.english_name}</li>
                     <li>{data.department}</li>
-                    <li className='py-1'><IoStar  color='orange' className='mx-1' size={"20px"}/><IoStar  color='orange' className='mx-1' size={"20px"}/><IoStar  color='orange' className='mx-1' size={"20px"}/><IoStar  color='orange' className='mx-1' size={"20px"}/><IoStar  color='orange' className='mx-1' size={"20px"}/></li>
+                    <li className='py-1'><IoStar color='orange' className='mx-1' size={"20px"} /><IoStar color='orange' className='mx-1' size={"20px"} /><IoStar color='orange' className='mx-1' size={"20px"} /><IoStar color='orange' className='mx-1' size={"20px"} /><IoStar color='orange' className='mx-1' size={"20px"} /></li>
                 </ul>
                 <div className='book-info d-flex justify-content-around text-capitalize text-center'>
                     <div>

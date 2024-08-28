@@ -56,9 +56,6 @@ export default function Public_content() {
                 }
                 <Outlet />
             </section>
-            <footer className="footer w-100 h-25 text-bg-primary">
-                copy right for bilal sweidan
-            </footer>
         </>
     )
 }

@@ -1,0 +1,60 @@
+main{
+    background-color: #F1F1F1 ;
+
+    .book-info-div{
+        width: 100%;
+        gap: 100px !important;
+        > img{
+            width: 350px !important ;
+            box-shadow: 0px 0px 20px black;
+        }
+        > div{
+            position: relative;
+            width: 50%;
+            background-color: white;
+            > ul{
+                list-style: none;
+                line-height: 40px;
+                > li {
+                    > strong{
+                        font-size: 20px;
+                        font-family: Arial, Helvetica, sans-serif;
+                    }
+                }
+            }
+            > footer{
+                bottom: 0;
+                > button , > a{
+                    width: 25%;
+                    border-radius: 0;
+                    &.download-btn{
+                        animation-name: donwload_btn;
+                        animation-timeline: scroll();
+                    }
+                }
+            }
+        }
+        .about-author{
+            background-color: white !important;
+            width: 85%;
+            > img{
+                width: 15%;
+                height: 150px;
+            }
+            > div {
+                background-color: #F1F1F1 ;
+            }
+        }
+    }
+}
+@keyframes donwload_btn {
+    to{
+        border-radius: 50%;
+        position: fixed;
+        z-index: 100000;
+        transform: translateX(100%);
+        transform: translateY(50%);
+        width: auto;
+        height: auto;
+    }
+}

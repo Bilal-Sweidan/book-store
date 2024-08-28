@@ -29,7 +29,7 @@ function Language_list() {
 export default function Admin() {
     const path = useLocation().pathname
     const navigate = useNavigate()
-    const {user,setUser,logout} = useContext(UserContext)
+    const {setUser} = useContext(UserContext)
     
     const [langPrompt,setLangPrompt] = useState(false)
     return (
@@ -53,7 +53,7 @@ export default function Admin() {
                     </div>
                     <Link to="/Login" className="d-flex justify-content-center align-items-center text-decoration-none text-transform-capitalize">
                         <p className=" text-light m-0 px-2 fs-s fw-bold" onClick={() => {
-                            logout()
+                            // logout()
                             setUser(null)
                         }}>Log out</p>
                         <MdOutlineFollowTheSigns size={"30px"} color="white" title="sign in" />

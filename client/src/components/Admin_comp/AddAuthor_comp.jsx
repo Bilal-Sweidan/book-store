@@ -28,7 +28,6 @@ export default function AddAuthor_comp() {
         setLoading(false);
     }
     const { user } = useContext(UserContext)
-    console.log(user)
 
     return (
         <>

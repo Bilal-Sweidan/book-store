@@ -94,13 +94,11 @@ function authenticateToken(req, res, next) {
             console.log(err)
             return res.status(400)
         }
-        // const { account } = user
         res.json(user)
         // res.status(201).json({user: account, message: "User logged in successfully", success: true });
         next()
     })
 }
-
 
 
 app.post('/sign-up', async (req, res) => {
