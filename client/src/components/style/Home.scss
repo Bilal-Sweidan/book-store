@@ -2,37 +2,44 @@
     font-family: title;
     src: url(../../assets/font/Sevillana-Regular.ttf);
 }
-*{
-    padding:  0;
+
+* {
+    padding: 0;
     margin: 0;
-    .main-header{
+
+    .main-header {
         background-color: #021526 !important;
         user-select: none;
         display: flex;
         align-items: center;
         justify-content: space-between;
         position: relative;
-        .center-div{
+
+        .center-div {
             position: absolute;
             left: 45%;
-            .logo{
+
+            .logo {
                 font-family: title !important;
                 font-size: 30px;
             }
         }
-        .right-div{
+
+        .right-div {
             display: flex;
             align-items: center;
             justify-content: space-around;
-            > ul{
+
+            >ul {
                 list-style: none;
                 display: flex;
                 align-items: center;
                 text-transform: capitalize;
-                > li {
+
+                >li {
                     cursor: pointer;
                     text-decoration: none;
-                    color:  black;
+                    color: black;
                     font-weight: 500;
                     display: flex;
                     margin-right: 20px;
@@ -40,24 +47,53 @@
                 }
             }
         }
-        .left-div{
+
+        .left-div {
             display: flex;
             align-items: center;
-            > a{
+
+            >a {
                 background-color: #6EACDA;
                 padding: 5px 10px;
                 border-radius: 7px;
 
                 display: flex;
                 align-items: center;
-                > p{
+
+                >p {
                     font-size: 17px;
                 }
             }
-            .language-btn{
+
+            // user logo
+            .user-icon {
                 cursor: pointer;
             }
-            .prompt-list{
+
+            .user-menu {
+                background-color: white !important;
+                position: absolute;
+                top: 64px;
+                right: 0;
+                width: 15%;
+                // height: 100%;
+                z-index: 1000;
+                transition: 1s;
+
+                >a {
+                    transition: .2s;
+                    &:hover {
+                        transform: scale(1.05);
+                    }
+                }
+            }
+        
+
+            .language-btn {
+                cursor: pointer;
+            }
+
+            .prompt-list {
                 z-index: 1000;
                 top: 100%;
                 right: 7.5%;
@@ -65,14 +101,17 @@
                 padding: 0px 20px;
                 border-radius: 10px;
                 box-shadow: 1px 1px 5px #333;
-                ul{
-                    list-style:none;
+
+                ul {
+                    list-style: none;
                     padding: 0;
-                    li{
+
+                    li {
                         padding: 5px 10px;
                         margin: 0;
                         position: relative;
-                        &.list-arrow{
+
+                        &.list-arrow {
                             position: absolute;
                             top: -32%;
                             left: 26%;

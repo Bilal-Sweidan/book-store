@@ -1,21 +1,25 @@
 import axios from 'axios'
-import { useEffect,useState } from 'react'
+import { useEffect, useState } from 'react'
 
 // components
 import Books_card from './Books_card_comp'
+import Loading_comp from './Loading_comp'
 export default function Search_comp() {
     const [books, setBooks] = useState([])
+    const [isLoading, setLoading] = useState(false)
     useEffect(() => {
+        setLoading(true)
         axios.get('http://localhost:3000/')
             .then(res => {
                 setBooks(res.data)
             })
+        setLoading(false)
     }, [])
     return (
         <>
-            <main className='w-100 mh-100'>
+            <main className='w-100 vh-100'>
                 <div className='search-div w-100 bg-dark position-abolute'>
-                    
+
                 </div>
                 <div className='w-100 p-5'>
                     <form action="" className='d-flex w-100'>

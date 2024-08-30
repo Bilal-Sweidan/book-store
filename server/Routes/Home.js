@@ -5,7 +5,7 @@ const router = express.Router()
 // DataBases
 const {Books, Authors} = require('../modules/Schema')
 
-router.get(`/:Book_name`,async (req,res) => {
+router.get(`/books/:Book_name`,async (req,res) => {
     const {Book_name} = req.params
     try{
         const data = await Books.findOne({"name" : Book_name})

@@ -101,7 +101,7 @@ export default function Main() {
                 </div>
             </div> */}
             {/* Books */}
-            <div className='w-100 px-5 pt-4 vh-100'>
+            <div className='books-section w-100 px-5 pt-4 vh-100'>
                 <h2 className='text-center mt-3 text-uppercase'>explore our books</h2>
                 <div className='books d-flex justify-content-center gap-3 flex-wrap px-5 py-5'>
                     {

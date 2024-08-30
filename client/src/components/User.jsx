@@ -1,17 +1,15 @@
 import { Link, Outlet, useNavigate, useLocation } from "react-router-dom";
 import './style/Home.scss'
+import Main from "./Main";
+import UserContext from "../Context/Contexts";
+import { useContext, useState } from "react";
 
 // icons
 import { IoLanguageSharp } from "react-icons/io5";
 import { MdOutlineFollowTheSigns } from "react-icons/md";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { MdOutlineDarkMode } from "react-icons/md";
-import UserContext from "../Context/Contexts";
-
-import Main from "./Main";
-import { useContext } from "react";
-
-
+import { RiMapPinUserFill,RiUserSettingsLine } from "react-icons/ri";
 
 function Language_list() {
     return (
@@ -28,16 +26,18 @@ function Language_list() {
 export default function User() {
     const path = useLocation().pathname
     const navigate = useNavigate()
-
     const { user, setUser, logout } = useContext(UserContext)
+
+    const [userMenu, setUserMenu] = useState(false)
+
     return (
         <>
             <header className="main-header px-3 py-1">
                 <div className="right-div">
                     <ul>
-                        <li className="d-flex align-items-center text-light"><IoMdArrowDropdown /> authores</li>
                         <li className="d-flex align-items-center text-light"><IoMdArrowDropdown /> about</li>
-                        <li className="d-flex align-items-center text-light"><IoMdArrowDropdown /> books category</li>
+                        <li className="d-flex align-items-center text-light"><Link to="/books/authors" className="text-light text-decoration-none">authores</Link> </li>
+                        <li className="d-flex align-items-center text-light"><Link to="/books/categories" className="text-light text-decoration-none">books category</Link></li>
                     </ul>
                 </div>
                 <div className="center-div">
@@ -58,13 +58,34 @@ export default function User() {
                                 <MdOutlineFollowTheSigns size={"30px"} color="white" title="sign in" />
                             </Link>
                             :
-                            <Link to="/Login" className="d-flex justify-content-center align-items-center text-decoration-none text-transform-capitalize">
-                                <p className=" text-light m-0 px-2 fs-s fw-bold" onClick={() => {
-                                    logout()
-                                    setUser(null)
-                                }}>Log out</p>
-                                <MdOutlineFollowTheSigns size={"30px"} color="white" title="sign in" />
-                            </Link>
+                            <>
+                                {/* <Link to="/Login" className="d-flex justify-content-center align-items-center text-decoration-none text-transform-capitalize">
+                                    <p className=" text-light m-0 px-2 fs-s fw-bold" onClick={() => {
+                                        logout()
+                                        setUser(null)
+                                    }}>Log out</p>
+                                    <MdOutlineFollowTheSigns size={"30px"} color="white" title="sign in" />
+                                </Link> */}
+                                <RiMapPinUserFill color={userMenu ? "#6EACDA" : "white"} size={"35px"} className="user-icon" onClick={() => setUserMenu(!userMenu)} />
+                                {
+                                    userMenu &&
+                                    <div className="user-menu px-3 py-2 text-center rounded">
+                                        <Link to="/Login" className="d-flex justify-content-center align-items-center text-decoration-none text-transform-capitalize bg-dark py-1 my-2">
+                                            <p className=" text-light m-0 px-2 fs-s fw-bold" onClick={() => {
+                                                logout()
+                                                setUser(null)
+                                            }}>Log out</p>
+                                            <MdOutlineFollowTheSigns size={"25px"} color="white" title="sign in" />
+                                        </Link>
+                                        <Link to="/setting" className="d-flex justify-content-center align-items-center text-decoration-none text-transform-capitalize bg-dark py-1  my-2">
+                                            <p className="text-capitalize text-light m-0 px-2 fs-s fw-bold" onClick={() => {
+                                                
+                                            }}>setting</p>
+                                            <RiUserSettingsLine size={"25px"} color="white" title="sign in" />
+                                        </Link>
+                                    </div>
+                                }
+                            </>
                     }
                 </div>
             </header>

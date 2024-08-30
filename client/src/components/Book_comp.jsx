@@ -28,7 +28,7 @@ export default function Book_comp() {
     const [author, setAuthor] = useState()
     useEffect(() => {
         setLoading(true)
-        axios.get(`http://localhost:3000/${Book_name}`)
+        axios.get(`http://localhost:3000/books/${Book_name}`)
             .then((res) => {
                 if (res.data) {
                     setBook(res.data.book)

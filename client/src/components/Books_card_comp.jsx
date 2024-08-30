@@ -20,7 +20,7 @@ export default function Books_card_comp({ data }) {
     }, [])
     const { user } = useContext(UserContext)
     return (
-        <Link to={`/${data.name}`} className='cards d-flex p-1 text-center'>
+        <Link to={`/books/${data.name}`} className='cards d-flex p-1 text-center'>
             <div className='w-50 h-100 p-3'>
                 <img src={new URL(`../assets/Books images/${data.cover_image}`, import.meta.url).href} alt="" className='h-100' />
             </div>

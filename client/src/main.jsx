@@ -33,7 +33,7 @@ const router = createBrowserRouter([
         element: <User_Role><Search_comp /></User_Role>
       },
       {
-        path: ':Book_name',
+        path: 'books/:Book_name',
         element: <Book_comp />
       },
       {
