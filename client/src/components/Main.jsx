@@ -49,7 +49,7 @@ export default function Main() {
                             <label htmlFor="" className='d-flex mt-5'>
                                 <input type="text" name="search" id="" placeholder='Seach.....' className='form-control border-3' onChange={(e) => setSearchWord(e.target.value)} />
                                 <button type='submit' className='btn btn-primary px-4' onClick={() => {
-                                    navigate(`/my/search`)
+                                    navigate(`/search`)
                                 }}><IoSearch size={'30px'} /> </button>
                             </label>
                         </form>

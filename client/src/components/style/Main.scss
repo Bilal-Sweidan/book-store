@@ -4,6 +4,9 @@
 }
 *{
     .main-div{
+        background: linear-gradient(151deg, rgba(255,255,255,1) 39%, rgba(110,172,218,1) 100%, rgba(255,255,255,1) 100%);
+        // background-color: #E2E2B6 !important;
+
         position: relative;
         height: calc(100vh - 65px);
         .left-div{

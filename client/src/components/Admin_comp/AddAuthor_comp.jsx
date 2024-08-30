@@ -32,7 +32,7 @@ export default function AddAuthor_comp() {
     return (
         <>
             {
-                user?.role === 'Admin' ?
+                // user?.role === 'Admin' ?
                 <>
                     <h2 className="text-capitalize d-flex align-items-center"><RiQuillPenLine size={"50px"} color='#03346E' /> add new author</h2>
                     <form action="" method='dialog' className="add-book d-flex text-capitalize w-100 gap-4" onSubmit={fetchData}>
@@ -53,8 +53,8 @@ export default function AddAuthor_comp() {
                         </div>
                     </form>
                 </>
-                :
-                <Nopage/>
+                // :
+                // <Nopage/>
             }
         </>
     )

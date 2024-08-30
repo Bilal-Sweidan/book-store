@@ -28,8 +28,8 @@ main{
                     width: 25%;
                     border-radius: 0;
                     &.download-btn{
-                        animation-name: donwload_btn;
-                        animation-timeline: scroll();
+                        // animation-name: donwload_btn;
+                        // animation-timeline: scroll();
                     }
                 }
             }
@@ -52,8 +52,8 @@ main{
         border-radius: 50%;
         position: fixed;
         z-index: 100000;
-        transform: translateX(100%);
-        transform: translateY(50%);
+        transform: translateX(300px);
+        transform: translateY(100%);
         width: auto;
         height: auto;
     }

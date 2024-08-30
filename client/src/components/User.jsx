@@ -32,23 +32,23 @@ export default function User() {
     const { user, setUser, logout } = useContext(UserContext)
     return (
         <>
-            <header className="main-header text-bg-light px-3 py-1">
+            <header className="main-header px-3 py-1">
                 <div className="right-div">
                     <ul>
-                        <li className="d-flex align-items-center"><IoMdArrowDropdown /> authores</li>
-                        <li className="d-flex align-items-center"><IoMdArrowDropdown /> about</li>
-                        <li className="d-flex align-items-center"><IoMdArrowDropdown /> books category</li>
+                        <li className="d-flex align-items-center text-light"><IoMdArrowDropdown /> authores</li>
+                        <li className="d-flex align-items-center text-light"><IoMdArrowDropdown /> about</li>
+                        <li className="d-flex align-items-center text-light"><IoMdArrowDropdown /> books category</li>
                     </ul>
                 </div>
-                <div className="center-div ">
-                    <Link to='/' className="logo text-decoration-none text-dark fw-bold">Light Store</Link>
+                <div className="center-div">
+                    <Link to='/' className="logo text-decoration-none text-light fw-bold">Light Store</Link>
                 </div>
                 <div className="left-div">
                     <div className="language-btn mx-3">
-                        <MdOutlineDarkMode size={'25px'} color="#021526" className="language-btn" />
+                        <MdOutlineDarkMode size={'25px'} color="#021526" className="language-btn text-light" />
                     </div>
                     <div className="language-btn mx-3">
-                        <IoLanguageSharp size={'25px'} color="#021526" className="language-btn" onClick={() => document.querySelector('.prompt-list').classList.toggle('d-none')} />
+                        <IoLanguageSharp size={'25px'} color="#021526" className="language-btn text-light" onClick={() => document.querySelector('.prompt-list').classList.toggle('d-none')} />
                     </div>
                     <Language_list className=" d-none" />
                     {
