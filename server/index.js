@@ -41,7 +41,7 @@ app.get('/', async (req, res) => {
 })
 
 app.post('/', authenticateToken, async (req, res, next) => {
-    
+
 })
 
 
@@ -57,12 +57,12 @@ app.post('/login', async (req, res, next) => {
         const account = await Accounts.findOne({ email: email })
         if (account) {
             if (Compare(password, account.password)) {
-                const accessToken = jwt.sign({ account }, process.env.ACCESS_TOKEN_SECRET,{expiresIn : '1d'}) //, { expiresIn: '1d' }
+                const accessToken = jwt.sign({ account }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1d' }) //, { expiresIn: '1d' }
                 res.cookie("token", accessToken, {
                     withCredentials: true,
                     httpOnly: false,
                 });
-                res.status(201).json({account , message: "User logged in successfully", success: true });
+                res.status(201).json({ account, message: "User logged in successfully", success: true });
                 next()
             } else {
                 res.send("wrong password or email").status(404)
@@ -74,11 +74,12 @@ app.post('/login', async (req, res, next) => {
     }
 })
 
-app.get('/logout',(req,res,next) => {
+app.get('/logout', (req, res, next) => {
     console.log('logged out')
-    try{
+    try {
         res.clearCookie('token').status(200).json({ success: true, message: 'User logged out successfully' })
-    }catch(err){
+    } catch (err) {
+        res.status(403).json({ success: false, message: 'User logged out failed' })
         console.log(err)
     }
 })
@@ -86,7 +87,7 @@ app.get('/logout',(req,res,next) => {
 function authenticateToken(req, res, next) {
 
     const token = req.cookies.token
-    if(!token){
+    if (!token) {
         return res.status(403)
     }
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
@@ -121,8 +122,10 @@ app.post('/sign-up', async (req, res) => {
 // Routes
 const Admin_R = require('./Routes/Admin_R')
 const Home = require('./Routes/Home')
+const Api_R = require('./Routes/Api_R')
 app.use('/A', Admin_R);
-app.use('/',Home)
+app.use('/', Home)
+app.use('/api',Api_R)
 
 
 app.listen(process.env.PORT, () => {

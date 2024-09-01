@@ -21,11 +21,13 @@ import { UserProvider } from './Context/Contexts.jsx';
 import UserContext from './Context/Contexts.jsx';
 import Loading_comp from './components/Loading_comp.jsx'
 import Nopage from './components/NoPage.jsx'
+// Admin components
+import AllBooks from './components/Admin_comp/AllBooks.jsx'
+import Accounts from './components/Admin_comp/Accounts.jsx'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    // element: <Layout />,
     element: <Based_Role />,
     children: [
       {
@@ -43,6 +45,14 @@ const router = createBrowserRouter([
       {
         path: 'add-author',
         element: <Admin_Role><AddAuthor_comp /></Admin_Role> 
+      },
+      {
+        path: "our-books",
+        element: <Admin_Role><AllBooks/></Admin_Role>
+      },
+      {
+        path: "accounts",
+        element: <Admin_Role><Accounts/></Admin_Role>
       }
     ]
   },
@@ -61,7 +71,7 @@ function User_Role({ children }) {
   const { user, isLoading } = useContext(UserContext)
   const location = useLocation()
   if(isLoading){
-    return <Loading_comp/>
+    return null
   }
   if (user?.role == "User") {
     return children
@@ -75,7 +85,7 @@ function Admin_Role({ children }) {
   const { user, isLoading } = useContext(UserContext)
   const location = useLocation()
   if(isLoading){
-    return <Loading_comp/>
+    return null
   }
   if (user?.role == 'Admin') {
     return children
@@ -89,13 +99,16 @@ function Based_Role() {
   const { user, isLoading } = useContext(UserContext)
   const location = useLocation()
   if(isLoading ){
-    return <Loading_comp/>
+    return null
   }
   if (user?.role == 'Admin') {
     return <Admin />
   }
   return <User />
 }
+
+
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <UserProvider>
     <RouterProvider router={router} />

@@ -10,10 +10,11 @@ export const UserProvider = ({ children }) => {
 
     const [cookies, removeCookies] = useCookies()
     const [user, setUser] = useState(null)
-    const [isLoading,setLoading] = useState(true)
+    const [isLoading, setLoading] = useState(true)
     useEffect(() => {
         const verifyCookies = async () => {
             if (!cookies.token) {
+                setLoading(false)
                 return null
             }
             setLoading(true)
@@ -28,15 +29,13 @@ export const UserProvider = ({ children }) => {
         verifyCookies()
     }, [cookies])
 
-    const [isPending,setPending] = useState(false)
+    const [isPending, setPending] = useState(false)
     async function fetch_data(e) {
         const input = e.target
         const formData = new FormData(input)
         const jsonForm = Object.fromEntries(formData.entries())
         setPending(true)
-        const { data } = await axios.post('http://localhost:3000/login', jsonForm, {
-            withCredentials: true
-        })
+        const { data } = await axios.post('http://localhost:3000/login', jsonForm, { withCredentials: true })
             .catch(err => {
                 console.log(err);
             })
@@ -54,7 +53,7 @@ export const UserProvider = ({ children }) => {
         }
     }
     return (
-        <UserContext.Provider value={{ user, setUser, fetch_data, logout,isPending,isLoading }}>
+        <UserContext.Provider value={{ user, setUser, fetch_data, logout, isPending, isLoading }}>
             {children}
         </UserContext.Provider>
     )

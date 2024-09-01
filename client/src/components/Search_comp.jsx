@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 
+// scss file
+import './style/Search_comp.scss'
 // components
 import Books_card from './Books_card_comp'
 import Loading_comp from './Loading_comp'

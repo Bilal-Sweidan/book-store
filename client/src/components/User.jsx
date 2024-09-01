@@ -70,7 +70,7 @@ export default function User() {
                                 {
                                     userMenu &&
                                     <div className="user-menu px-3 py-2 text-center rounded">
-                                        <Link to="/Login" className="d-flex justify-content-center align-items-center text-decoration-none text-transform-capitalize bg-dark py-1 my-2">
+                                        <Link className="d-flex justify-content-center align-items-center text-decoration-none text-transform-capitalize bg-dark py-1 my-2">
                                             <p className=" text-light m-0 px-2 fs-s fw-bold" onClick={() => {
                                                 logout()
                                                 setUser(null)

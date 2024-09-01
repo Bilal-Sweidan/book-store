@@ -12,7 +12,7 @@ import {
     MdOutlineInsertComment,
     MdOutlineShoppingCartCheckout,
     MdOutlineStar,
-    MdShare
+    MdOutlineAddShoppingCart
 } from "react-icons/md";
 
 
@@ -89,20 +89,20 @@ export default function Book_comp() {
                                 </li>
                             </ul>
                             <footer className='position-absolute w-100'>
-                                <button className='btn btn-light border-primary'><MdShare size={"25px"} className='mx-2' />share</button>
-                                <button className='btn btn-light border-primary'><MdOutlineStar size={"25px"} className='mx-2' />rate</button>
-                                <button className='btn btn-light border-primary'><MdOutlineInsertComment size={"25px"} className='mx-2' />review</button>
+                                <button className='btn btn-light border-primary'><MdOutlineStar size={"25px"} className='mx-2' color='orange'/>rate</button>
+                                <button className='btn btn-light border-primary'><MdOutlineInsertComment size={"25px"} className='mx-2' color='red'/>review</button>
+                                <button className='btn btn-light border-primary'><MdOutlineAddShoppingCart size={"25px"} color='green' className='mx-2' />add to cart</button>
                                 {
                                     book?.price != 0 ?
                                         !user ?
                                             <Link to="/Login" className='download-btn btn btn-light border border-primary'><MdOutlineShoppingCartCheckout size={"25px"} className='mx-2' /> buy</Link>
                                             :
-                                            <a href={`../../public/Books/${book?.book_file}`} download={true} className='download-btn btn btn-light border border-primary'><MdOutlineShoppingCartCheckout size={"25px"} className='mx-2' /> buy</a>
+                                            <a href={`../../public/Books/${book?.book_file}`} download={true} className='download-btn btn btn-light border border-primary'><MdOutlineShoppingCartCheckout size={"25px"} color='blue' className='mx-2' /> buy</a>
                                         :
                                         !user ?
                                             <Link to="/Login" className='download-btn btn btn-light border-primary'><MdDownload size={"25px"} className='mx-2' />Download</Link>
                                             :
-                                            <a href={`../../public/Books/${book?.book_file}`} download={true} className='download-btn btn btn-light border border-primary'><MdDownload size={"25px"} className='mx-2' />download</a>
+                                            <a href={`../../public/Books/${book?.book_file}`} download={true} className='download-btn btn btn-light border border-primary'><MdDownload size={"25px"} color='blue' className='mx-2' />download</a>
                                 }
                             </footer>
                         </div>
