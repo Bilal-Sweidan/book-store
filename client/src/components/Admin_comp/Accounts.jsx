@@ -5,20 +5,21 @@ import { FiUserX } from "react-icons/fi";
 import { RiUserSettingsLine } from "react-icons/ri";
 // 
 import axios from "axios"
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import Loading_comp from "../Loading_comp";
-
+import UserContext from '../../Context/Contexts'
 
 export default function Accounts() {
     const [accounts, setAccount] = useState([])
-    const [isLoading,setLoading] = useState(false)
+    const [isLoading, setLoading] = useState(false)
     useEffect(() => {
         async function getAccounts() {
             setLoading(true)
             try {
                 const { data } = await axios.get('http://localhost:3000/api/accounts')
                 setAccount(data)
+                console.log(data)
             } catch (err) {
                 console.log(err)
             }
@@ -26,6 +27,23 @@ export default function Accounts() {
         }
         getAccounts()
     }, [])
+
+    const { user } = useContext(UserContext)
+    async function handleRole(e, userId) {
+        const newData = {
+            userId: userId,
+            role: e.target.value
+        }
+        console.log(newData)
+        try {
+            const { data } = await axios.put('http://localhost:3000/A/change-account-role', newData)
+            if (data.success) {
+                console.log("changed role successfuly")
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
     return (
         <>
             <header className="w-100 d-flex align-items-center justify-content-between">
@@ -34,7 +52,7 @@ export default function Accounts() {
                 </div>
                 <div className="d-flex align-items-center gap-2">
                     <div className="text-capitalize">
-                        <span className="mx-2 text-success">
+                        <span className="mx-2 text-success fw-bold">
                             {accounts?.length}
                         </span>
                         members
@@ -47,38 +65,38 @@ export default function Accounts() {
                 </div>
             </header>
             <section className="accounts-section py-4">
-                {   
-                    isLoading ? <h1>Loading ........</h1>:
-                    accounts.map(account => {
-                        return (
-                            <>
-                                <div className="w-100 border-top border-2 border-dark d-flex align-items-center justify-content-between">
-                                    <div className="d-flex align-items-center gap-2 p-1">
-                                        <img src={`../../../public/Authors/1724096343101.png`} className="" style={{ width: "5%" }} alt="" />
-                                        <div className="text-capitalize fw-bold">{account?.name}</div>
-                                        <div className="" style={{ color: "#555" }}>{account?.email}</div>
+                {
+                    isLoading ? <h1>Loading ........</h1> :
+                        accounts.map(account => {
+                            return (
+                                <>
+                                    <div key={account._id} className="w-100 border-top border-2 border-dark d-flex align-items-center justify-content-between">
+                                        <div className="d-flex align-items-center gap-2 p-1">
+                                            <img src={`../../../public/Authors/1724096343101.png`} className="rounded-circle" style={{ width: "5%",boxShadow: account.role === "Admin" && "0px 0px 10px red"}} alt="" />
+                                            <div className="text-capitalize fw-bold">{account?.name}</div>
+                                            <div className="" style={{ color: "#555" }}>{account?.email}</div>
+                                        </div>
+                                        <div className="d-flex align-items-center gap-2">
+                                            <FiUserX size={"35px"} style={{ cursor: "pointer" }} />
+                                            <RiUserSettingsLine size={"35px"} style={{ cursor: "pointer" }} />
+                                            <select name="account_role" id="" disabled={user._id === account._id} className="form-select" onChange={(e) => {handleRole(e, account._id)}}>
+                                                <option value={account?.role} className="" defaultValue>{account?.role}</option>
+                                                {
+                                                    account?.role === "Admin" ?
+                                                        <>
+                                                            <option value="User">User</option>
+                                                        </>
+                                                        :
+                                                        <>
+                                                            <option value="Admin">Admin</option>
+                                                        </>
+                                                }
+                                            </select>
+                                        </div>
                                     </div>
-                                    <div className="d-flex align-items-center gap-2">
-                                        <FiUserX size={"35px"} style={{cursor: "pointer"}}/>
-                                        <RiUserSettingsLine size={"35px"} style={{cursor: "pointer"}} />
-                                        <select name="" id="" className="form-select">
-                                            <option value={account?.role} className="" selected>{account?.role}</option>
-                                            {
-                                                account?.role === "Admin" ?
-                                                    <>
-                                                        <option value="User">User</option>
-                                                    </>
-                                                    :
-                                                    <>
-                                                        <option value="Admin">Admin</option>
-                                                    </>
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
-                            </>
-                        )
-                    })
+                                </>
+                            )
+                        })
                 }
             </section>
         </>

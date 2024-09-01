@@ -4,7 +4,7 @@ const router = express.Router()
 // modules
 const { upload } = require('../modules/Multer') // multer
 // database
-const { Books, Authors } = require('../modules/Schema')
+const { Books, Authors , Accounts } = require('../modules/Schema')
 
 router.get('/add-book',async (req,res,next) => {
     try{
@@ -52,6 +52,19 @@ router.post('/add-author',upload.single('author_photo'),async (req,res,next) => 
         res.status(401).send(false)
     }
 })
+
+
+router.put('/change-account-role',async (req,res) => {
+    const {userId,role} = req.body
+    try{
+        const account = await Accounts.updateOne({_id : userId},{role : role})
+        res.status(200).json({success : true})
+    }catch(err){
+        console.log(err)
+        res.status(403).json({success : false})
+    }
+})
+
 
 module.exports = router
 
