@@ -2,6 +2,8 @@
 import axios from 'axios'
 import { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom'
+// fonts css file
+import '../../fonts.css'
 // icons
 import { BsSendArrowUp } from "react-icons/bs";
 import { TbPencilPlus } from "react-icons/tb";
@@ -42,7 +44,7 @@ export default function AddBook_comp() {
             {
                 user?.role === 'Admin' ? 
                 <>
-                    <h2 className="text-capitalize d-flex align-items-end"><GiBookshelf size={"50px"} color='#03346E' /> add new book</h2>
+                    <h2 className="text-capitalize d-flex align-items-end gap-2" style={{ fontFamily : "BebasNeue"}}><GiBookshelf size={"45px"} color='#03346E' /> add new book</h2>
                     <form action="" method='dialog' className="add-book d-flex text-capitalize w-100 gap-4" onSubmit={fetchData}>
                         <div className='w-50'>
                             <label htmlFor="" className="mb-1">book name</label>

@@ -53,14 +53,17 @@ app.post('/getAuthor_name', async (req, res) => {
 
 app.post('/login', async (req, res, next) => {
     const { email, password } = req.body
+    const one_day = 24 * 60 * 60 * 1000
+    const six_hours = 6 * 60 * 60 * 1000 
     try {
         const account = await Accounts.findOne({ email: email })
         if (account) {
             if (Compare(password, account.password)) {
-                const accessToken = jwt.sign({ account }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1d' }) //, { expiresIn: '1d' }
+                const accessToken = jwt.sign({ account }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '6h' }) //, { expiresIn: '1d' }
                 res.cookie("token", accessToken, {
                     withCredentials: true,
                     httpOnly: false,
+                    maxAge: six_hours
                 });
                 res.status(201).json({ account, message: "User logged in successfully", success: true });
                 next()
@@ -85,7 +88,6 @@ app.get('/logout', (req, res, next) => {
 })
 
 function authenticateToken(req, res, next) {
-
     const token = req.cookies.token
     if (!token) {
         return res.status(403)
@@ -93,7 +95,7 @@ function authenticateToken(req, res, next) {
     jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
         if (err) {
             console.log(err)
-            return res.status(400)
+            return res.status(400).clearCookie('token')
         }
         res.json(user)
         // res.status(201).json({user: account, message: "User logged in successfully", success: true });

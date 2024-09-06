@@ -3,6 +3,8 @@ import { IoSearch } from "react-icons/io5";
 import { MdOutlinePersonAddAlt } from "react-icons/md";
 import { FiUserX } from "react-icons/fi";
 import { RiUserSettingsLine } from "react-icons/ri";
+// fonts css file
+import '../../fonts.css'
 // 
 import axios from "axios"
 import { useContext, useEffect, useState } from "react"
@@ -48,7 +50,7 @@ export default function Accounts() {
         <>
             <header className="w-100 d-flex align-items-center justify-content-between">
                 <div>
-                    <h3>Memebers</h3>
+                    <h3 style={{ fontFamily : "BebasNeue"}}>Memebers</h3>
                 </div>
                 <div className="d-flex align-items-center gap-2">
                     <div className="text-capitalize">
@@ -72,14 +74,19 @@ export default function Accounts() {
                                 <>
                                     <div key={account._id} className="w-100 border-top border-2 border-dark d-flex align-items-center justify-content-between">
                                         <div className="d-flex align-items-center gap-2 p-1">
-                                            <img src={`../../../public/Authors/1724096343101.png`} className="rounded-circle" style={{ width: "5%",boxShadow: account.role === "Admin" && "0px 0px 10px red"}} alt="" />
+                                            <img src={`../../../public/Authors/1724096343101.png`} className="rounded-circle" style={{ width: "5%", boxShadow: account.role === "Admin" && "0px 0px 10px red" }} alt="" />
                                             <div className="text-capitalize fw-bold">{account?.name}</div>
                                             <div className="" style={{ color: "#555" }}>{account?.email}</div>
                                         </div>
                                         <div className="d-flex align-items-center gap-2">
-                                            <FiUserX size={"35px"} style={{ cursor: "pointer" }} />
-                                            <RiUserSettingsLine size={"35px"} style={{ cursor: "pointer" }} />
-                                            <select name="account_role" id="" disabled={user._id === account._id} className="form-select" onChange={(e) => {handleRole(e, account._id)}}>
+                                            {
+                                                user._id !== account._id &&
+                                                <>
+                                                    < FiUserX size={"35px"} style={{ cursor: "pointer" }} />
+                                                    <RiUserSettingsLine size={"35px"} style={{ cursor: "pointer" }} />
+                                                </>
+                                            }
+                                            <select name="account_role" id="" disabled={user._id === account._id} className="form-select" onChange={(e) => { handleRole(e, account._id) }}>
                                                 <option value={account?.role} className="" defaultValue>{account?.role}</option>
                                                 {
                                                     account?.role === "Admin" ?

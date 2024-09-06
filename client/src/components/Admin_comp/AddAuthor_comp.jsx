@@ -2,6 +2,8 @@
 import axios from 'axios'
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
+// font css file
+import '../../fonts.css'
 // icons
 import { BsSendArrowUp } from "react-icons/bs";
 import { RiQuillPenLine } from "react-icons/ri";
@@ -34,7 +36,7 @@ export default function AddAuthor_comp() {
             {
                 // user?.role === 'Admin' ?
                 <>
-                    <h2 className="text-capitalize d-flex align-items-center"><RiQuillPenLine size={"50px"} color='#03346E' /> add new author</h2>
+                    <h2 className="text-capitalize d-flex align-items-center" style={{ fontFamily : "BebasNeue"}}><RiQuillPenLine size={"50px"} color='#03346E' /> add new author</h2>
                     <form action="" method='dialog' className="add-book d-flex text-capitalize w-100 gap-4" onSubmit={fetchData}>
                         <div className='w-50'>
                             <label htmlFor="" className="mb-1">arabic author name</label>

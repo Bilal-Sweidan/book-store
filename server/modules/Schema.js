@@ -35,6 +35,8 @@ const Account = mongoose.Schema({
 })
 
 const Card = mongoose.Schema({
+    booksID: String,
+    userId : String,
     content: [String],
 })
 

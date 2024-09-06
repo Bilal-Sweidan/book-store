@@ -1,0 +1,58 @@
+* {
+    box-sizing: border-box;
+}
+
+.book-table-div {
+    >header {
+        border-radius: 5px 5px 0 0 ;
+        
+        >ul {
+            >li {
+                border-radius: 5px 5px 0 0;
+                cursor: pointer;
+                transition: .5s;
+
+                &.selected {
+                    background-color: #6EACDA;
+                }
+
+                &:hover {
+                    background-color: #6eabda79;
+                }
+            }
+        }
+    }
+
+    >.table-body {
+        >header {
+            background-color: #6EACDA;
+
+            ul {
+                li:not(.check-box) {
+                    width: 150px;
+                    margin-right: 20px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+
+        >section {
+            height: 68% !important;
+            border-radius: 0 0 5px 5px;
+            ul {
+                cursor: pointer;
+                &:hover{
+                    background-color: #666 !important;
+                }
+                li:not(.check-box) {
+                    width: 150px;
+                    padding-right:15px;
+                    margin-right: 20px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,19 @@
+@font-face {
+    font-family: Sevillana;
+    src: url(../public/font/Sevillana-Regular.ttf);
+}
+
+@font-face {
+    font-family: SUSE ;
+    src: url(../public/font/SUSE-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: ProtestGuerrilla;
+    src: url(../public/font/ProtestGuerrilla-Regular.ttf);
+}
+
+@font-face {
+    font-family: BebasNeue;
+    src: url(../public/font/BebasNeue-Regular.ttf);
+}

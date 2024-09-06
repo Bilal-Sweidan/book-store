@@ -5,11 +5,12 @@ import UserContext from "../Context/Contexts";
 import { useContext, useState } from "react";
 
 // icons
-import { IoLanguageSharp } from "react-icons/io5";
-import { MdOutlineFollowTheSigns } from "react-icons/md";
+import { IoLanguageSharp,IoSettings } from "react-icons/io5";
+import { MdOutlineFollowTheSigns,MdSupportAgent } from "react-icons/md";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { RiMapPinUserFill,RiUserSettingsLine } from "react-icons/ri";
+import { FaUserCircle } from "react-icons/fa";
 
 function Language_list() {
     return (
@@ -59,29 +60,31 @@ export default function User() {
                             </Link>
                             :
                             <>
-                                {/* <Link to="/Login" className="d-flex justify-content-center align-items-center text-decoration-none text-transform-capitalize">
-                                    <p className=" text-light m-0 px-2 fs-s fw-bold" onClick={() => {
-                                        logout()
-                                        setUser(null)
-                                    }}>Log out</p>
-                                    <MdOutlineFollowTheSigns size={"30px"} color="white" title="sign in" />
-                                </Link> */}
                                 <RiMapPinUserFill color={userMenu ? "#6EACDA" : "white"} size={"35px"} className="user-icon" onClick={() => setUserMenu(!userMenu)} />
                                 {
                                     userMenu &&
-                                    <div className="user-menu px-3 py-2 text-center rounded">
-                                        <Link className="d-flex justify-content-center align-items-center text-decoration-none text-transform-capitalize bg-dark py-1 my-2">
+                                    <div className="user-menu px-3 py-2 text-center rounded ">
+                                        <Link to="/setting" className="d-flex justify-content-around align-items-center text-decoration-none text-transform-capitalize py-1  my-2 m-auto">
+                                            <FaUserCircle size={"25px"} color="black" title="sign in" />
+                                            <p className="text-capitalize text-dark m-0 px-2 fs-s fw-bold" onClick={() => {}}>profile</p>
+                                        </Link>
+
+                                        <Link to="/setting" className="d-flex justify-content-around align-items-center text-decoration-none text-transform-capitalize py-1  my-2 m-auto">
+                                            <MdSupportAgent size={"25px"} color="black" title="sign in" />
+                                            <p className="text-capitalize text-dark m-0 px-2 fs-s fw-bold" onClick={() => {}}>support</p>
+                                        </Link>
+
+                                        <Link to="/setting" className="d-flex justify-content-around align-items-center text-decoration-none text-transform-capitalize py-1  my-2 m-auto">
+                                            <IoSettings size={"25px"} color="black" title="sign in" />
+                                            <p className="text-capitalize text-dark m-0 px-2 fs-s fw-bold" onClick={() => {}}>setting</p>
+                                        </Link>
+
+                                        <Link className="rounded d-flex justify-content-center align-items-center text-decoration-none text-transform-capitalize bg-dark py-1 my-2 m-auto">
                                             <p className=" text-light m-0 px-2 fs-s fw-bold" onClick={() => {
                                                 logout()
                                                 setUser(null)
                                             }}>Log out</p>
                                             <MdOutlineFollowTheSigns size={"25px"} color="white" title="sign in" />
-                                        </Link>
-                                        <Link to="/setting" className="d-flex justify-content-center align-items-center text-decoration-none text-transform-capitalize bg-dark py-1  my-2">
-                                            <p className="text-capitalize text-light m-0 px-2 fs-s fw-bold" onClick={() => {
-                                                
-                                            }}>setting</p>
-                                            <RiUserSettingsLine size={"25px"} color="white" title="sign in" />
                                         </Link>
                                     </div>
                                 }

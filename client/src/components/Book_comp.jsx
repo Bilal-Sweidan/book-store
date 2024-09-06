@@ -46,7 +46,7 @@ export default function Book_comp() {
             {
                 // isLoading ? <Loading_comp /> :
                 <main className='d-flex px-5'>
-                    <div className='book-info-div  d-flex justify-content-center flex-wrap gap-5 p-4'>
+                    <div className='book-info-div  d-flex justify-content-center flex-wrap gap-2 p-4'>
                         <img src={new URL(`../assets/Books images/${book?.cover_image}`, import.meta.url).href} className='' alt="" />
                         <div className='w-50 rounded'>
                             <ul className='text-capitalize py-4'>
@@ -106,7 +106,7 @@ export default function Book_comp() {
                                 }
                             </footer>
                         </div>
-                        <div className='about-author d-flex rounded gap-5 p-4'>
+                        <div className='about about-author d-flex rounded gap-5 p-4'>
                             <img src={`../../public/Authors/${author?.photo}`} alt="" className='rounded-circle' />
                             <div className='my-3 rounded p-3 text-wrap'>
                                 <h2 className='text-capitalize'>{author?.english_name}</h2>
@@ -120,7 +120,7 @@ export default function Book_comp() {
                                 </p>
                             </div>
                         </div>
-                        <div className='about-author d-flex rounded gap-5 p-4'>
+                        <div className='about about-author d-flex rounded gap-5 p-4'>
                             <div className='my-3 rounded p-3 text-wrap'>
                                 <h2 className='text-capitalize'>book description</h2>
                                 <p className=''>
@@ -131,9 +131,7 @@ export default function Book_comp() {
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita corrupti quo unde tempora, quaerat esse facilis odit voluptatibus impedit tenetur ad illo excepturi aspernatur totam fugiat nobis. Sequi, ea perferendis.
                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita corrupti quo unde tempora, quaerat esse facilis odit voluptatibus impedit tenetur ad illo excepturi aspernatur totam fugiat nobis. Sequi, ea perferendis.
                                 </p>
-
                             </div>
-                            {/* <img src={`../../public/Authors/${book?.photo}`} alt="" className='rounded-circle' /> */}
                             <img src={new URL(`../assets/Books images/${book?.cover_image}`, import.meta.url).href} className='my-3' alt="" />
                         </div>
                     </div>
