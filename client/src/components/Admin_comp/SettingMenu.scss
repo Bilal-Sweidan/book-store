@@ -1,0 +1,21 @@
+.setting-menu {
+    height: 41px;
+    width: 25%;
+
+    >div {
+        >button {
+            height: 41px;
+            cursor: pointer;
+            transition: .5s;
+            &:hover {
+                background-color: #cbcbcb;
+            }
+        }
+    }
+
+    >div:nth-child(2) {
+        border-radius: 20px 0 0 20px;
+        padding: 0 2px 0 10px !important;
+        cursor: pointer;
+    }
+}

@@ -32,33 +32,26 @@ export default function AddAuthor_comp() {
     const { user } = useContext(UserContext)
 
     return (
-        <>
-            {
-                // user?.role === 'Admin' ?
-                <>
-                    <h2 className="text-capitalize d-flex align-items-center" style={{ fontFamily : "BebasNeue"}}><RiQuillPenLine size={"50px"} color='#03346E' /> add new author</h2>
-                    <form action="" method='dialog' className="add-book d-flex text-capitalize w-100 gap-4" onSubmit={fetchData}>
-                        <div className='w-50'>
-                            <label htmlFor="" className="mb-1">arabic author name</label>
-                            <input type="text" className="form-control mb-3" name='arabic_name' placeholder="author name" />
+        <div className='rounded px-3 py-3 h-100'>
+            <h2 className="text-capitalize d-flex align-items-center" style={{ fontFamily: "BebasNeue" }}><RiQuillPenLine size={"50px"} color='orange' /> add new author</h2>
+            <form action="" method='dialog' className="add-book d-flex text-capitalize w-100 gap-4" onSubmit={fetchData}>
+                <div className='w-50'>
+                    <label htmlFor="" className="mb-1">arabic author name</label>
+                    <input type="text" className="form-control mb-3" name='arabic_name' placeholder="author name" />
 
-                            <label htmlFor="" className="mb-1">english author name</label>
-                            <input type="text" className="form-control mb-3" name='english_name' placeholder="author name" />
+                    <label htmlFor="" className="mb-1">english author name</label>
+                    <input type="text" className="form-control mb-3" name='english_name' placeholder="author name" />
 
-                            <label htmlFor="" className="mb-1">author photo</label>
-                            <input type="file" name="author_photo" id="" className="form-control mb-3" />
+                    <label htmlFor="" className="mb-1">author photo</label>
+                    <input type="file" name="author_photo" id="" className="form-control mb-3" />
 
-                            <label htmlFor="" className="mb-1">about the author </label>
-                            <textarea name="about" id="" className="form-control mb-3" placeholder='write at least 200 words about this author' rows={4}></textarea>
+                    <label htmlFor="" className="mb-1">about the author </label>
+                    <textarea name="about" id="" className="form-control mb-3" placeholder='write at least 200 words about this author' rows={4}></textarea>
 
-                            <button type="submit" className="btn btn-success text-capitalize" disabled={loading}><BsSendArrowUp size={"20px"} className="mx-2" />send data</button>
-                        </div>
-                    </form>
-                </>
-                // :
-                // <Nopage/>
-            }
-        </>
+                    <button type="submit" className="btn btn-success text-capitalize" disabled={loading}><BsSendArrowUp size={"20px"} className="mx-2" />send data</button>
+                </div>
+            </form>
+        </div>
     )
 }
 

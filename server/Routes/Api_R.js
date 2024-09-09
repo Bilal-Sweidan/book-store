@@ -17,9 +17,18 @@ router.get('/books', async (req, res) => {
     try {
         const books = await Books.find()
         const authors = await Authors.find()
-        res.status(200).json({ success: true, books , authors })
+        res.status(200).json({ success: true, books, authors })
     } catch (err) {
         console.log(err)
+        res.status(403).json({ success: false })
+    }
+})
+
+router.get('/authors', async (req, res) => {
+    try {
+        const authors = await Authors.find()
+        res.status(200).json({ success: true, authors })
+    } catch (err) {
         res.status(403).json({ success: false })
     }
 })

@@ -1,9 +1,7 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext } from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, useLocation, Navigate } from 'react-router-dom'
-import { useCookies } from 'react-cookie'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import axios from 'axios'
 // Components
 import AddBook_comp from './components/Admin_comp/AddBook_comp.jsx';
 import AddAuthor_comp from './components/Admin_comp/AddAuthor_comp.jsx';
@@ -24,6 +22,7 @@ import Nopage from './components/NoPage.jsx'
 // Admin components
 import AllBooks from './components/Admin_comp/AllBooks.jsx'
 import Accounts from './components/Admin_comp/Accounts.jsx'
+import Authors from './components/Admin_comp/Authors.jsx';
 
 const router = createBrowserRouter([
   {
@@ -53,6 +52,10 @@ const router = createBrowserRouter([
       {
         path: "accounts",
         element: <Admin_Role><Accounts/></Admin_Role>
+      },
+      {
+        path: "authors",
+        element: <Admin_Role><Authors/></Admin_Role>
       }
     ]
   },

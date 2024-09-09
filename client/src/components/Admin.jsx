@@ -2,27 +2,39 @@ import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 // userContext
 import UserContext from "../Context/Contexts";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 // sass file
 import './style/Home.scss'
 // sass file for admin only
 import './Admin.scss'
 // icons
-import { IoMdList, IoMdArrowDropup } from "react-icons/io";
+import { IoMdList } from "react-icons/io";
 import { MdOutlineDarkMode, MdOutlineFollowTheSigns, MdSupportAgent } from "react-icons/md";
-import { CiBookmarkPlus } from "react-icons/ci";
-import { RiQuillPenLine, RiMapPinUserFill, RiUserSettingsLine, RiAccountPinCircleFill } from "react-icons/ri";
-import { PiBooksLight } from "react-icons/pi";
+import { RiMapPinUserFill, RiAccountPinCircleFill } from "react-icons/ri";
 import { IoSettings } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
+import { AiFillHome } from "react-icons/ai";
+import { SiBookstack } from "react-icons/si";
+import { BiSolidPencil } from "react-icons/bi";
 
 export default function Admin() {
     const path = useLocation().pathname
     const navigate = useNavigate()
+    const location = useLocation()
     const { setUser, logout } = useContext(UserContext)
-
-    const [langPrompt, setLangPrompt] = useState(false)
     const [userMenu, setUserMenu] = useState(false)
+
+    const [li_status, setLi_Status] = useState([true, false, false, false])
+    useEffect(() => {
+        switch (location.pathname) {
+            case "/":
+                setLi_Status([true, false, false, false])
+                break
+            case "/accounts":
+                setLi_Status([false, true, false, false])
+                break
+        }
+    }, [location])
     return (
         <main>
             <header className="main-header text-bg-dark px-3 py-2 w-100">
@@ -71,53 +83,31 @@ export default function Admin() {
                     {/* <p className="mx-2 my-0 h5">Accounts</p>
                     <hr className="mx-2" /> */}
                     <ul className="text-capitalize p-0">
+                        <Link to='/' className="">
+                            <li className="d-flex gap-4 align-items-center mb-2 mx-2 rounded text-light" style={{ backgroundColor: li_status[0] ? "#b8b8b89a" : "" }}>
+                                <AiFillHome color="white" size={"25px"} />
+                                home
+                            </li>
+                        </Link>
                         <Link to='/accounts' className="">
-                            <li className="d-flex gap-2 align-items-center mb-2 mx-2 rounded">
-                                <RiAccountPinCircleFill color="orange" size={"22px"} />
+                            <li className="d-flex gap-4 align-items-center mb-2 mx-2 rounded text-light">
+                                <RiAccountPinCircleFill color="white" size={"25px"} />
                                 accounts
                             </li>
                         </Link>
                         <Link to='/our-books' className="">
-                            <li className="d-flex gap-2 align-items-center mb-2 mx-2 rounded">
-                                <PiBooksLight color="orange" size={"22px"} />
-                                all books
+                            <li className="d-flex gap-4 align-items-center mb-2 mx-2 rounded text-light">
+                                <SiBookstack color="white" size={"25px"} />
+                                books
                             </li>
                         </Link>
-                        <Link to='/add-book' className="">
-                            <li className="d-flex gap-2 align-items-center mb-2 mx-2 rounded">
-                                <CiBookmarkPlus color="orange" size={"22px"} />
-                                new book
-                            </li>
-                        </Link>
-                        <Link to='/add-author'>
-                            <li className="d-flex gap-2 align-items-center mb-2 mx-2 rounded">
-                                <RiQuillPenLine color="orange" size={"22px"} />
-                                new author
+                        <Link to='/authors'>
+                            <li className="d-flex gap-4 align-items-center mb-2 mx-2 rounded text-light">
+                                <BiSolidPencil color="white" size={"25px"} />
+                                author
                             </li>
                         </Link>
                     </ul>
-                    {/* <p className="mx-2 my-0 h5">Books</p>
-                    <hr className="mx-2" />
-                    <ul className="text-capitalize p-0">
-                        <Link to='/our-books' className="">
-                            <li className="d-flex gap-2 align-items-center mb-2 mx-2 rounded">
-                                <PiBooksLight color="orange" size={"22px"} />
-                                all books
-                            </li>
-                        </Link>
-                        <Link to='/add-book' className="">
-                            <li className="d-flex gap-2 align-items-center mb-2 mx-2 rounded">
-                                <CiBookmarkPlus color="orange" size={"22px"} />
-                                new book
-                            </li>
-                        </Link>
-                        <Link to='/add-author'>
-                            <li className="d-flex gap-2 align-items-center mb-2 mx-2 rounded">
-                                <RiQuillPenLine color="orange" size={"22px"} />
-                                new author
-                            </li>
-                        </Link>
-                    </ul> */}
                 </div>
                 <div className="viewer px-3 py-3">
                     {

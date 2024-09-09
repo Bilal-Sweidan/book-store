@@ -30,6 +30,10 @@ const Account = mongoose.Schema({
         type: String,
         require: true,
     },
+    status: {
+        type: String,
+        trim: true
+    }
     // card_id: String,
     // author: String
 })

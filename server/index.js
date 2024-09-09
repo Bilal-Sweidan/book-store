@@ -55,15 +55,16 @@ app.post('/login', async (req, res, next) => {
     const { email, password } = req.body
     const one_day = 24 * 60 * 60 * 1000
     const six_hours = 6 * 60 * 60 * 1000 
+    const month = 30 * 24 * 60 * 60 * 1000 
     try {
         const account = await Accounts.findOne({ email: email })
         if (account) {
             if (Compare(password, account.password)) {
-                const accessToken = jwt.sign({ account }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '6h' }) //, { expiresIn: '1d' }
+                const accessToken = jwt.sign({ account }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30d' }) //, { expiresIn: '1d' }
                 res.cookie("token", accessToken, {
                     withCredentials: true,
                     httpOnly: false,
-                    maxAge: six_hours
+                    maxAge: month
                 });
                 res.status(201).json({ account, message: "User logged in successfully", success: true });
                 next()

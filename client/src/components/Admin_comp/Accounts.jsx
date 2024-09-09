@@ -11,22 +11,25 @@ import { useContext, useEffect, useState } from "react"
 import { Link } from "react-router-dom";
 import Loading_comp from "../Loading_comp";
 import UserContext from '../../Context/Contexts'
+// toast
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Accounts() {
     const [accounts, setAccount] = useState([])
     const [isLoading, setLoading] = useState(false)
-    useEffect(() => {
-        async function getAccounts() {
-            setLoading(true)
-            try {
-                const { data } = await axios.get('http://localhost:3000/api/accounts')
-                setAccount(data)
-                console.log(data)
-            } catch (err) {
-                console.log(err)
-            }
-            setLoading(false)
+    async function getAccounts() {
+        setLoading(true)
+        try {
+            const { data } = await axios.get('http://localhost:3000/api/accounts')
+            setAccount(data)
+            console.log(data)
+        } catch (err) {
+            console.log(err)
         }
+        setLoading(false)
+    }
+    useEffect(() => {
         getAccounts()
     }, [])
 
@@ -36,11 +39,13 @@ export default function Accounts() {
             userId: userId,
             role: e.target.value
         }
-        console.log(newData)
         try {
             const { data } = await axios.put('http://localhost:3000/A/change-account-role', newData)
             if (data.success) {
-                console.log("changed role successfuly")
+                toast(`role has changed successfulty`)
+                getAccounts()
+            }else{
+                toast(`role has changed <red>failed<red/>`)
             }
         } catch (err) {
             console.log(err)
@@ -50,7 +55,7 @@ export default function Accounts() {
         <>
             <header className="w-100 d-flex align-items-center justify-content-between">
                 <div>
-                    <h3 style={{ fontFamily : "BebasNeue"}}>Memebers</h3>
+                    <h3 style={{ fontFamily: "BebasNeue" }}>Memebers</h3>
                 </div>
                 <div className="d-flex align-items-center gap-2">
                     <div className="text-capitalize">
@@ -86,7 +91,7 @@ export default function Accounts() {
                                                     <RiUserSettingsLine size={"35px"} style={{ cursor: "pointer" }} />
                                                 </>
                                             }
-                                            <select name="account_role" id="" disabled={user._id === account._id} className="form-select" onChange={(e) => { handleRole(e, account._id) }}>
+                                            <select name="account_role" id="" disabled={user._id === account._id || account?.status === "Boss"} className="form-select" onChange={(e) => { handleRole(e, account._id) }}>
                                                 <option value={account?.role} className="" defaultValue>{account?.role}</option>
                                                 {
                                                     account?.role === "Admin" ?
@@ -105,6 +110,7 @@ export default function Accounts() {
                             )
                         })
                 }
+                <ToastContainer />
             </section>
         </>
     )

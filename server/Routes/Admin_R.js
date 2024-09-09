@@ -65,6 +65,18 @@ router.put('/change-account-role',async (req,res) => {
     }
 })
 
+router.delete('/delete-book/:bookID',async (req,res) => {
+    const {bookID} = req.params 
+    console.log("delete : " , bookID)
+    try{
+        const book = await Books.deleteOne({_id : bookID})
+        res.status(200).json({success : true})
+    }catch(err){
+        console.log(err)
+        res.status(400).json({success : false})
+    }
+})
+
 
 module.exports = router
 
