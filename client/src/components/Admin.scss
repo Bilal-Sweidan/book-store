@@ -21,20 +21,22 @@
             z-index: 1000;
             width: $sidebar-width;
             overflow: hidden;
-            transition: 1s;
-            box-shadow: 2px 2px 5px white;
-            width: 220px !important;
+            transition: .5s;
+            // box-shadow: 2px 2px 5px white;
+
             ul {
                 list-style: none;
+
                 a {
                     text-decoration: none;
+
                     li {
                         height: 40px;
                         padding: 0 10px;
                         transition: .5s;
+
                         &:hover {
                             background-color: #b8b8b89a;
-                            // color: white !important;
                         }
                     }
                 }
@@ -48,6 +50,7 @@
 
         >.viewer {
             width: calc(100% - $sidebar-width);
+            transition: .5s;
         }
     }
 }

@@ -33,6 +33,10 @@ const Account = mongoose.Schema({
     status: {
         type: String,
         trim: true
+    },
+    EmailBox_ID: {
+        type: String,
+        unique: true
     }
     // card_id: String,
     // author: String
@@ -98,13 +102,50 @@ const Author = mongoose.Schema({
     arabic_name: String,
     english_name: String,
     about: String,
-    photo: String
+    photo: String,
+    createdAt: {
+        type: Date,
+        default: Date.now()
+    }
 })
+
+const Support_message = mongoose.Schema({
+    account_ID: {
+        type : String,
+        required: true,
+        unique: false,
+        trim: true,
+    },
+    title: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    text: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    data: {
+        type: Date,
+        default: Date.now(),
+    },
+    status: {
+        type: String,
+        enum: ['failed',"sent","readed","responsed"],
+        default: "sent"
+    },
+    res_text: {
+        type: String,
+        trim: true
+    }
+}) 
 
 const Books = mongoose.model('Books', Book)
 const Accounts = mongoose.model('Accounts', Account)
 const Cards = mongoose.model('Cards', Card)
 const Authors = mongoose.model('Authors', Author)
+const Support_messages = mongoose.model("Support_messages",Support_message)
 
 
-module.exports = { Accounts, Books, Cards, Authors }
+module.exports = { Accounts, Books, Cards, Authors, Support_messages }

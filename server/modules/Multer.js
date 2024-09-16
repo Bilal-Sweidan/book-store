@@ -7,9 +7,9 @@ const storage = multer.diskStorage({
         if (file.fieldname === 'cover') {
             cb(null, '..\\client\\src\\assets\\Books images');
         }else if (file.fieldname === 'book') {
-            cb(null, 'D:\\my projects\\book-store\\client\\src\\assets\\Books');
+            cb(null, 'D:\\my projects\\book-store\\client\\public\\Books');
         }else if(file.fieldname === 'author_photo'){
-            cb(null,'..\\client\\src\\assets\\Authors')
+            cb(null,'..\\client\\public\\Authors')
         }
     },
     filename: (req, file, cb) => {

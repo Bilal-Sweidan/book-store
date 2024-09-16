@@ -5,11 +5,11 @@ import UserContext from "../Context/Contexts";
 import { useContext, useState } from "react";
 
 // icons
-import { IoLanguageSharp,IoSettings } from "react-icons/io5";
-import { MdOutlineFollowTheSigns,MdSupportAgent } from "react-icons/md";
+import { IoLanguageSharp, IoSettings } from "react-icons/io5";
+import { MdOutlineFollowTheSigns, MdSupportAgent } from "react-icons/md";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { MdOutlineDarkMode } from "react-icons/md";
-import { RiMapPinUserFill,RiUserSettingsLine } from "react-icons/ri";
+import { RiMapPinUserFill, RiUserSettingsLine } from "react-icons/ri";
 import { FaUserCircle } from "react-icons/fa";
 
 function Language_list() {
@@ -64,19 +64,19 @@ export default function User() {
                                 {
                                     userMenu &&
                                     <div className="user-menu px-3 py-2 text-center rounded ">
-                                        <Link to="/setting" className="d-flex justify-content-around align-items-center text-decoration-none text-transform-capitalize py-1  my-2 m-auto">
+                                        <Link to="/profile" className="d-flex justify-content-around align-items-center text-decoration-none text-transform-capitalize py-1  my-2 m-auto">
                                             <FaUserCircle size={"25px"} color="black" title="sign in" />
-                                            <p className="text-capitalize text-dark m-0 px-2 fs-s fw-bold" onClick={() => {}}>profile</p>
+                                            <p className="text-capitalize text-dark m-0 px-2 fs-s fw-bold" onClick={() => { setUserMenu(!userMenu) }}>profile</p>
                                         </Link>
 
-                                        <Link to="/setting" className="d-flex justify-content-around align-items-center text-decoration-none text-transform-capitalize py-1  my-2 m-auto">
+                                        <Link to="/support" className="d-flex justify-content-around align-items-center text-decoration-none text-transform-capitalize py-1  my-2 m-auto">
                                             <MdSupportAgent size={"25px"} color="black" title="sign in" />
-                                            <p className="text-capitalize text-dark m-0 px-2 fs-s fw-bold" onClick={() => {}}>support</p>
+                                            <p className="text-capitalize text-dark m-0 px-2 fs-s fw-bold" onClick={() => { setUserMenu(!userMenu) }}>support</p>
                                         </Link>
 
                                         <Link to="/setting" className="d-flex justify-content-around align-items-center text-decoration-none text-transform-capitalize py-1  my-2 m-auto">
                                             <IoSettings size={"25px"} color="black" title="sign in" />
-                                            <p className="text-capitalize text-dark m-0 px-2 fs-s fw-bold" onClick={() => {}}>setting</p>
+                                            <p className="text-capitalize text-dark m-0 px-2 fs-s fw-bold" onClick={() => { setUserMenu(!userMenu) }}>setting</p>
                                         </Link>
 
                                         <Link className="rounded d-flex justify-content-center align-items-center text-decoration-none text-transform-capitalize bg-dark py-1 my-2 m-auto">

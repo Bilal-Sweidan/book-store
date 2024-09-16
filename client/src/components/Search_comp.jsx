@@ -17,6 +17,21 @@ export default function Search_comp() {
             })
         setLoading(false)
     }, [])
+
+    async function handleSearch(e) {
+        setLoading(true)
+        const input = e.target
+        const formData = new FormData(input)
+        const dataJson = Object.fromEntries(formData.entries())
+        const { data } = await axios.post(`http://localhost:3000/api/search`, dataJson)
+        if(data.success){
+            setBooks(prevItems =>  [...data.books])
+            console.log(books,data)
+        }
+        setLoading(false)
+    }
+
+
     return (
         <>
             <main className='w-100 vh-100'>
@@ -24,9 +39,9 @@ export default function Search_comp() {
 
                 </div>
                 <div className='w-100 p-5'>
-                    <form action="" className='d-flex w-100'>
+                    <form action="" method="dialog"  className='d-flex w-100' onSubmit={handleSearch}>
                         <div className='w-50 m-auto d-flex align-items-center justify-content-center'>
-                            <input type="search" className='form-control' placeholder='search....' />
+                            <input type="search" name='search_word' className='form-control' placeholder='search....' />
                             <button type='submit' className='btn btn-primary'>search</button>
                         </div>
                     </form>
@@ -34,7 +49,9 @@ export default function Search_comp() {
 
                 <div className='books-div d-flex justify-content-center gap-4 px-5 flex-wrap'>
                     {
-                        books.map(book => (
+                        isLoading ? <Loading_comp/> :
+                        books?.length == 0 ? <h1 className='text-capitalize'>there is no books like this !!!!</h1>:
+                        books?.map(book => (
                             <Books_card key={book._id} data={book} />
                         ))
                     }

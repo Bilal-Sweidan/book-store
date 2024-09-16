@@ -6,6 +6,8 @@ import { useParams, useNavigate, Link } from 'react-router-dom'
 import Loading_comp from './Loading_comp'
 // sass file
 import './style/Book_comp.scss'
+// import fonts 
+import '../fonts.css'
 // icons
 import {
     MdDownload,
@@ -46,7 +48,7 @@ export default function Book_comp() {
             {
                 // isLoading ? <Loading_comp /> :
                 <main className='d-flex px-5'>
-                    <div className='book-info-div  d-flex justify-content-center flex-wrap gap-2 p-4'>
+                    <div className='book-info-div d-flex justify-content-center flex-wrap p-5 mt-4 mb-4 rounded text-bg-light'>
                         <img src={new URL(`../assets/Books images/${book?.cover_image}`, import.meta.url).href} className='' alt="" />
                         <div className='w-50 rounded'>
                             <ul className='text-capitalize py-4'>
@@ -67,11 +69,11 @@ export default function Book_comp() {
                                 </li>
                                 <li className='d-flex text-muted'>
                                     <strong>extention : </strong>
-                                    <p className='text-uppercase mx-2 fw-bold'>{book?.file_type.split('/')[1]}</p>
+                                    <p className='text-uppercase mx-2 fw-bold m-0'>{book?.file_type.split('/')[1]}</p>
                                 </li>
                                 <li className='d-flex text-muted'>
                                     <strong>language : </strong>
-                                    <p className='text-uppercase mx-2 fw-bold'>{"English"}</p>
+                                    <p className='text-uppercase mx-2 fw-bold m-0'>{"English"}</p>
                                 </li>
                                 <li className='text-muted'>
                                     <strong>pages : </strong>{book?.pages}

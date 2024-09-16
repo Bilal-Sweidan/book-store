@@ -3,6 +3,7 @@ import { IoSearch } from "react-icons/io5";
 import { MdOutlinePersonAddAlt } from "react-icons/md";
 import { FiUserX } from "react-icons/fi";
 import { RiUserSettingsLine } from "react-icons/ri";
+import { CiMenuKebab } from "react-icons/ci";
 // fonts css file
 import '../../fonts.css'
 // 
@@ -44,7 +45,7 @@ export default function Accounts() {
             if (data.success) {
                 toast(`role has changed successfulty`)
                 getAccounts()
-            }else{
+            } else {
                 toast(`role has changed <red>failed<red/>`)
             }
         } catch (err) {
@@ -73,45 +74,45 @@ export default function Accounts() {
             </header>
             <section className="accounts-section py-4">
                 {
-                    isLoading ? <h1>Loading ........</h1> :
-                        accounts.map(account => {
-                            return (
-                                <>
-                                    <div key={account._id} className="w-100 border-top border-2 border-dark d-flex align-items-center justify-content-between">
-                                        <div className="d-flex align-items-center gap-2 p-1">
-                                            <img src={`../../../public/Authors/1724096343101.png`} className="rounded-circle" style={{ width: "5%", boxShadow: account.role === "Admin" && "0px 0px 10px red" }} alt="" />
-                                            <div className="text-capitalize fw-bold">{account?.name}</div>
-                                            <div className="" style={{ color: "#555" }}>{account?.email}</div>
-                                        </div>
-                                        <div className="d-flex align-items-center gap-2">
-                                            {
-                                                user._id !== account._id &&
-                                                <>
-                                                    < FiUserX size={"35px"} style={{ cursor: "pointer" }} />
-                                                    <RiUserSettingsLine size={"35px"} style={{ cursor: "pointer" }} />
-                                                </>
-                                            }
-                                            <select name="account_role" id="" disabled={user._id === account._id || account?.status === "Boss"} className="form-select" onChange={(e) => { handleRole(e, account._id) }}>
-                                                <option value={account?.role} className="" defaultValue>{account?.role}</option>
-                                                {
-                                                    account?.role === "Admin" ?
-                                                        <>
-                                                            <option value="User">User</option>
-                                                        </>
-                                                        :
-                                                        <>
-                                                            <option value="Admin">Admin</option>
-                                                        </>
-                                                }
-                                            </select>
-                                        </div>
-                                    </div>
-                                </>
-                            )
-                        })
+                    isLoading ? <div className="w-100 vh-75 d-flex align-items-center justify-content-center"><Loading_comp /></div> :
+                        accounts.map(account => (
+                            <>
+                                <div key={account._id} className="w-100 border-top border-2 border-dark d-flex align-items-center justify-content-between">
+                                    <div className="d-flex align-items-center gap-2 p-1">
+                                        <img src={`../../../public/Authors/1724096343101.png`} className="rounded-circle" style={{ width: "5%"}} alt="" />
+                                        <div className="text-capitalize fw-bold">{account?.name}</div>
+                                        <div className="" style={{ color: "#555" }}>{account?.email}</div>
+                                        {
+                                            account?.status === "Boss" &&
+                                            < div className="rounded text-bg-danger px-2 text-capitalize" style={{ color: "#555" }}>boss</div>
+                                        }
+                                </div>
+                                <div className="d-flex align-items-center gap-2">
+                                    <select name="account_role" id="" disabled={user._id === account._id || account?.status === "Boss"} className="form-select" onChange={(e) => { handleRole(e, account._id); }}>
+                                        <option value={account?.role} className="" defaultValue>{account?.role}</option>
+                                        {account?.role === "Admin" ?
+                                            <>
+                                                <option value="User">User</option>
+                                            </>
+                                            :
+                                            <>
+                                                <option value="Admin">Admin</option>
+                                            </>}
+                                    </select>
+                                    {user._id !== account._id &&
+                                        <>
+                                            <CiMenuKebab size={"30px"} style={{ cursor: "pointer" }} />
+                                            {/* <FiUserX size={"35px"} style={{ cursor: "pointer" }} />
+                                                        <RiUserSettingsLine size={"35px"} style={{ cursor: "pointer" }} /> */}
+                                        </>
+                                    }
+                                </div>
+                            </div >
+                            </>
+            ))
                 }
-                <ToastContainer />
-            </section>
+            <ToastContainer />
+        </section >
         </>
     )
 }

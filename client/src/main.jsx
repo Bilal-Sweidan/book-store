@@ -19,10 +19,14 @@ import { UserProvider } from './Context/Contexts.jsx';
 import UserContext from './Context/Contexts.jsx';
 import Loading_comp from './components/Loading_comp.jsx'
 import Nopage from './components/NoPage.jsx'
+import Support from './components/Support.jsx'
+import Profile from './components/Profile.jsx';
+import Setting from './components/setting.jsx';
 // Admin components
 import AllBooks from './components/Admin_comp/AllBooks.jsx'
 import Accounts from './components/Admin_comp/Accounts.jsx'
 import Authors from './components/Admin_comp/Authors.jsx';
+import Emails_comp from './components/Admin_comp/Emails_comp.jsx';
 
 const router = createBrowserRouter([
   {
@@ -56,6 +60,22 @@ const router = createBrowserRouter([
       {
         path: "authors",
         element: <Admin_Role><Authors/></Admin_Role>
+      },
+      {
+        path: "support",
+        element: <User_Role><Support/></User_Role>
+      },
+      {
+        path: "profile",
+        element: <User_Role><Profile/></User_Role>
+      },
+      {
+        path: "setting",
+        element: <User_Role><Setting/></User_Role>
+      },
+      {
+        path: "emails",
+        element: <Admin_Role><Emails_comp/></Admin_Role>
       }
     ]
   },

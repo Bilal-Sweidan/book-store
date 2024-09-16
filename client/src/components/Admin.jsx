@@ -9,7 +9,7 @@ import './style/Home.scss'
 import './Admin.scss'
 // icons
 import { IoMdList } from "react-icons/io";
-import { MdOutlineDarkMode, MdOutlineFollowTheSigns, MdSupportAgent } from "react-icons/md";
+import { MdOutlineDarkMode, MdOutlineFollowTheSigns, MdSupportAgent, MdForwardToInbox } from "react-icons/md";
 import { RiMapPinUserFill, RiAccountPinCircleFill } from "react-icons/ri";
 import { IoSettings } from "react-icons/io5";
 import { FaUserCircle } from "react-icons/fa";
@@ -33,19 +33,35 @@ export default function Admin() {
             case "/accounts":
                 setLi_Status([false, true, false, false])
                 break
+            case "/our-books":
+                setLi_Status([false, false, true, false])
+                break
+            case "/authors":
+                setLi_Status([false, false, false, true])
+                break
+            case "/emails":
+                setLi_Status([false, false, false, false, true])
+                break
+            default:
+                break
         }
     }, [location])
+
+    const [sidebar, setSidebar] = useState(false)
     return (
         <main>
             <header className="main-header text-bg-dark px-3 py-2 w-100">
                 <div className="right-div">
-                    <IoMdList size={'30px'} onClick={() => document.querySelector('.sidebar').classList.toggle('open')} />
+                    <IoMdList size={'30px'} onClick={() => { document.querySelector('.sidebar').classList.toggle('open'); setSidebar(!sidebar) }} />
                 </div>
                 <div className="center-div ">
                     <Link to='/' className="logo text-decoration-none fw-bold">Light Store</Link>
                 </div>
                 <div className="left-div">
-                    <div className="language-btn mx-3">
+                    <div className="mx-3">
+                        <MdForwardToInbox size={'25px'} color="white" className="" />
+                    </div>
+                    <div className="mx-3">
                         <MdOutlineDarkMode size={'25px'} color="white" className="language-btn" />
                     </div>
                     <RiMapPinUserFill color={userMenu ? "#6EACDA" : "white"} size={"35px"} className="user-icon" onClick={() => setUserMenu(!userMenu)} />
@@ -79,37 +95,76 @@ export default function Admin() {
                 </div>
             </header>
             <section className="view-section d-flex w-100">
-                <div className="sidebar open h-100 py-3 text-bg-dark">
-                    {/* <p className="mx-2 my-0 h5">Accounts</p>
-                    <hr className="mx-2" /> */}
+                <div className="sidebar open h-100 py-3 text-bg-dark"
+                    style={{
+                        width: sidebar ? "220px" : "100px",
+                    }}>
                     <ul className="text-capitalize p-0">
                         <Link to='/' className="">
-                            <li className="d-flex gap-4 align-items-center mb-2 mx-2 rounded text-light" style={{ backgroundColor: li_status[0] ? "#b8b8b89a" : "" }}>
+                            <li className="d-flex gap-4 align-items-center mb-2 mx-2 rounded text-light"
+                                style={{
+                                    backgroundColor: li_status[0] ? "#b8b8b89a" : "",
+                                    justifyContent: sidebar ? "" : "center",
+                                }}>
                                 <AiFillHome color="white" size={"25px"} />
-                                home
+                                {
+                                    sidebar && <p className="m-0">home</p>
+                                }
                             </li>
                         </Link>
                         <Link to='/accounts' className="">
-                            <li className="d-flex gap-4 align-items-center mb-2 mx-2 rounded text-light">
+                            <li className="d-flex gap-4 align-items-center mb-2 mx-2 rounded text-light"
+                                style={{
+                                    backgroundColor: li_status[1] ? "#b8b8b89a" : "", justifyContent: sidebar ? "" : "center"
+                                }}>
                                 <RiAccountPinCircleFill color="white" size={"25px"} />
-                                accounts
+                                {
+                                    sidebar && <p className="m-0">account</p>
+                                }
                             </li>
                         </Link>
                         <Link to='/our-books' className="">
-                            <li className="d-flex gap-4 align-items-center mb-2 mx-2 rounded text-light">
+                            <li className="d-flex gap-4 align-items-center mb-2 mx-2 rounded text-light"
+                                style={{
+                                    backgroundColor: li_status[2] ? "#b8b8b89a" : "", justifyContent: sidebar ? "" : "center"
+                                }}>
                                 <SiBookstack color="white" size={"25px"} />
-                                books
+                                {
+                                    sidebar && <p className="m-0">books</p>
+                                }
                             </li>
                         </Link>
                         <Link to='/authors'>
-                            <li className="d-flex gap-4 align-items-center mb-2 mx-2 rounded text-light">
+                            <li className="d-flex gap-4 align-items-center mb-2 mx-2 rounded text-light"
+                                style={{
+                                    backgroundColor: li_status[3] ? "#b8b8b89a" : "",
+                                    justifyContent: sidebar ? "" : "center"
+                                }}>
                                 <BiSolidPencil color="white" size={"25px"} />
-                                author
+                                {
+                                    sidebar && <p className="m-0">authors</p>
+                                }
+                            </li>
+                        </Link>
+                        <hr className="mx-2" />
+                        <Link to='/emails'>
+                            <li className="d-flex gap-4 align-items-center mb-2 mx-2 rounded text-light"
+                                style={{
+                                    backgroundColor: li_status[4] ? "#b8b8b89a" : "",
+                                    justifyContent: sidebar ? "" : "center"
+                                }}>
+                                <MdSupportAgent color="white" size={"30px"} />
+                                {
+                                    sidebar && <p className="m-0">Emails</p>
+                                }
                             </li>
                         </Link>
                     </ul>
                 </div>
-                <div className="viewer px-3 py-3">
+                <div className="viewer px-3 py-3"
+                    style={{
+                        width: sidebar ? "calc(100% - 220px)" : "calc(100% - 100px)",
+                    }}>
                     {
                         path === '/' && (
                             <>
