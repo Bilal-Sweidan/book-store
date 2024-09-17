@@ -17,7 +17,7 @@ export default function Support() {
         setLoading(true)
         const input = e.target
         const formData = new FormData(input)
-        formData.append('user_ID',user._id)
+        formData.append('username',user.name)
         const jsonForm = Object.fromEntries(formData.entries())
         const { data } = await axios.post(`http://localhost:3000/support_message`,jsonForm)
         if(data.success){

@@ -74,45 +74,45 @@ export default function Accounts() {
             </header>
             <section className="accounts-section py-4">
                 {
-                    isLoading ? <div className="w-100 vh-75 d-flex align-items-center justify-content-center"><Loading_comp /></div> :
+                    isLoading ? <Loading_comp /> :
                         accounts.map(account => (
                             <>
                                 <div key={account._id} className="w-100 border-top border-2 border-dark d-flex align-items-center justify-content-between">
                                     <div className="d-flex align-items-center gap-2 p-1">
-                                        <img src={`../../../public/Authors/1724096343101.png`} className="rounded-circle" style={{ width: "5%"}} alt="" />
+                                        <img src={`../../../public/Authors/1724096343101.png`} className="rounded-circle" style={{ width: "5%" }} alt="" />
                                         <div className="text-capitalize fw-bold">{account?.name}</div>
                                         <div className="" style={{ color: "#555" }}>{account?.email}</div>
                                         {
                                             account?.status === "Boss" &&
                                             < div className="rounded text-bg-danger px-2 text-capitalize" style={{ color: "#555" }}>boss</div>
                                         }
-                                </div>
-                                <div className="d-flex align-items-center gap-2">
-                                    <select name="account_role" id="" disabled={user._id === account._id || account?.status === "Boss"} className="form-select" onChange={(e) => { handleRole(e, account._id); }}>
-                                        <option value={account?.role} className="" defaultValue>{account?.role}</option>
-                                        {account?.role === "Admin" ?
+                                    </div>
+                                    <div className="d-flex align-items-center gap-2">
+                                        <select name="account_role" id="" disabled={user._id === account._id || account?.status === "Boss"} className="form-select" onChange={(e) => { handleRole(e, account._id); }}>
+                                            <option value={account?.role} className="" defaultValue>{account?.role}</option>
+                                            {account?.role === "Admin" ?
+                                                <>
+                                                    <option value="User">User</option>
+                                                </>
+                                                :
+                                                <>
+                                                    <option value="Admin">Admin</option>
+                                                </>}
+                                        </select>
+                                        {user._id !== account._id &&
                                             <>
-                                                <option value="User">User</option>
-                                            </>
-                                            :
-                                            <>
-                                                <option value="Admin">Admin</option>
-                                            </>}
-                                    </select>
-                                    {user._id !== account._id &&
-                                        <>
-                                            <CiMenuKebab size={"30px"} style={{ cursor: "pointer" }} />
-                                            {/* <FiUserX size={"35px"} style={{ cursor: "pointer" }} />
+                                                <CiMenuKebab size={"30px"} style={{ cursor: "pointer" }} />
+                                                {/* <FiUserX size={"35px"} style={{ cursor: "pointer" }} />
                                                         <RiUserSettingsLine size={"35px"} style={{ cursor: "pointer" }} /> */}
-                                        </>
-                                    }
-                                </div>
-                            </div >
+                                            </>
+                                        }
+                                    </div>
+                                </div >
                             </>
-            ))
+                        ))
                 }
-            <ToastContainer />
-        </section >
+                <ToastContainer />
+            </section >
         </>
     )
 }

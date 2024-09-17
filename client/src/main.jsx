@@ -2,6 +2,8 @@ import React, { useContext } from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider, useLocation, Navigate } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
+// Global css file
+import './global.css'
 // Components
 import AddBook_comp from './components/Admin_comp/AddBook_comp.jsx';
 import AddAuthor_comp from './components/Admin_comp/AddAuthor_comp.jsx';
@@ -26,7 +28,7 @@ import Setting from './components/setting.jsx';
 import AllBooks from './components/Admin_comp/AllBooks.jsx'
 import Accounts from './components/Admin_comp/Accounts.jsx'
 import Authors from './components/Admin_comp/Authors.jsx';
-import Emails_comp from './components/Admin_comp/Emails_comp.jsx';
+import EmailsBox_comp from './components/Admin_comp/EmailsBox_comp.jsx';
 
 const router = createBrowserRouter([
   {
@@ -75,7 +77,7 @@ const router = createBrowserRouter([
       },
       {
         path: "emails",
-        element: <Admin_Role><Emails_comp/></Admin_Role>
+        element: <Admin_Role><EmailsBox_comp/></Admin_Role>
       }
     ]
   },

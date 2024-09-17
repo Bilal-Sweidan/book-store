@@ -15,6 +15,7 @@ import axios from 'axios'
 // toast
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loading_comp from "../Loading_comp";
 
 
 function SettingMenu({ deleteBook, data, setSettingMenu }) {
@@ -109,15 +110,16 @@ export default function AllBooks() {
                         </header>
                         <section className="text-bg-dark h-50 position-relative">
                             {
-                                authors.map((author, index) => {
-                                    return (
-                                        <ul className="d-flex m-0 text-capitalize p-0 py-2" style={{ listStyle: "none", backgroundColor: index % 2 != 0 ? "#333" : null }} onClick={() => { setSettingMenu(!settingMenu); setData(author) }}>
-                                            <li className="check-box text-center px-3"><input type="checkbox" name="" className="form-check-input" id="" onChange={() => setSettingMenu(!settingMenu)} /></li>
-                                            <li className="text-nowrap">{author?.english_name}</li>
-                                            <li className="text-nowrap">{author?.createdAt}</li>
-                                        </ul>
-                                    )
-                                })
+                                isLoading ? <Loading_comp /> :
+                                    authors.map((author, index) => {
+                                        return (
+                                            <ul className="d-flex m-0 text-capitalize p-0 py-2" style={{ listStyle: "none", backgroundColor: index % 2 != 0 ? "#333" : null }} onClick={() => { setSettingMenu(!settingMenu); setData(author) }}>
+                                                <li className="check-box text-center px-3"><input type="checkbox" name="" className="form-check-input" id="" onChange={() => setSettingMenu(!settingMenu)} /></li>
+                                                <li className="text-nowrap">{author?.english_name}</li>
+                                                <li className="text-nowrap">{author?.createdAt}</li>
+                                            </ul>
+                                        )
+                                    })
                             }
                             <footer className="table-footer d-flex align-items-center justify-content-center position-absolute bottom-0 w-100 p-3">
                                 <div className="d-flex gap-3 text-capitalize">

@@ -1,4 +1,4 @@
-import { BallTriangle,InfinitySpin } from 'react-loader-spinner'
+import { BallTriangle, InfinitySpin } from 'react-loader-spinner'
 export default function Loading_comp() {
     return (
         // <BallTriangle
@@ -11,12 +11,14 @@ export default function Loading_comp() {
         //     wrapperClass=""
         //     visible={true}
         // />
-        <InfinitySpin
-            visible={true}
-            width="250"
-            height={150}
-            color="#4fa94d"
-            ariaLabel="infinity-spin-loading"
-        />
+        <div className="w-100 vh-75 d-flex align-items-center justify-content-center">
+            <InfinitySpin
+                visible={true}
+                width="250"
+                height={150}
+                color="#4fa94d"
+                ariaLabel="infinity-spin-loading"
+            />
+        </div>
     )
 }

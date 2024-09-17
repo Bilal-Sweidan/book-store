@@ -44,7 +44,7 @@ const Account = mongoose.Schema({
 
 const Card = mongoose.Schema({
     booksID: String,
-    userId : String,
+    userId: String,
     content: [String],
 })
 
@@ -110,42 +110,19 @@ const Author = mongoose.Schema({
 })
 
 const Support_message = mongoose.Schema({
-    account_ID: {
-        type : String,
-        required: true,
-        unique: false,
-        trim: true,
-    },
-    title: {
-        type: String,
-        required: true,
-        trim: true,
-    },
-    text: {
-        type: String,
-        required: true,
-        trim: true,
-    },
-    data: {
-        type: Date,
-        default: Date.now(),
-    },
-    status: {
-        type: String,
-        enum: ['failed',"sent","readed","responsed"],
-        default: "sent"
-    },
-    res_text: {
-        type: String,
-        trim: true
-    }
-}) 
+    username: { type: String, required: true },
+    title: { type: String, required: true, trim: true },
+    text: { type: String, required: true, trim: true },
+    date: { type: Date, default: Date.now() },
+    status: { type: String, enum: ['failed', "unread", "readed", "responsed"], default: "unread" },
+    res_text: { type: String, trim: true }
+})
 
 const Books = mongoose.model('Books', Book)
 const Accounts = mongoose.model('Accounts', Account)
 const Cards = mongoose.model('Cards', Card)
 const Authors = mongoose.model('Authors', Author)
-const Support_messages = mongoose.model("Support_messages",Support_message)
+const Support_messages = mongoose.model("Support_messages", Support_message)
 
 
 module.exports = { Accounts, Books, Cards, Authors, Support_messages }

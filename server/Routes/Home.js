@@ -21,10 +21,10 @@ router.get(`/books/:Book_name`,async (req,res) => {
 
 router.post('/support_message',async (req ,res) => {
     console.log(req.body)
-    const { user_ID,problem_text,problem_title,other_problem_title } = req.body
+    const { username,problem_text,problem_title,other_problem_title } = req.body
     try{
         const message = await Support_messages.create({
-            account_ID: user_ID,
+            username: username,
             text: problem_text,
             title: other_problem_title ? other_problem_title : problem_title,
         })

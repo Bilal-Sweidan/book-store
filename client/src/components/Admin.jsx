@@ -1,5 +1,6 @@
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import axios from "axios";
 // userContext
 import UserContext from "../Context/Contexts";
 import { useContext, useEffect, useState } from "react";
@@ -47,18 +48,46 @@ export default function Admin() {
         }
     }, [location])
 
+    // emails
+    const [messages, setMessages] = useState([])
+    const [isLoading, setLoading] = useState(false)
+    useEffect(() => {
+        async function getMessages() {
+            setLoading(true)
+            const { data } = await axios.get(`http://localhost:3000/api/support_messages`)
+            if (data.success) {
+                setMessages(data.messages)
+            }
+            setLoading(false)
+        }
+        getMessages()
+    }, [])
+
     const [sidebar, setSidebar] = useState(false)
     return (
         <main>
             <header className="main-header text-bg-dark px-3 py-2 w-100">
                 <div className="right-div">
-                    <IoMdList size={'30px'} onClick={() => { document.querySelector('.sidebar').classList.toggle('open'); setSidebar(!sidebar) }} />
+                    <IoMdList size={'30px'} onClick={() => { setSidebar(!sidebar) }} />
                 </div>
                 <div className="center-div ">
                     <Link to='/' className="logo text-decoration-none fw-bold">Light Store</Link>
                 </div>
                 <div className="left-div">
-                    <div className="mx-3">
+                    <div className="mx-3 position-relative pointer">
+                        {
+                            messages.map((message) => (
+                                message.status === "unread" &&
+                                <span className=" position-absolute" style={{
+                                    width: "10px",
+                                    height: "10px",
+                                    borderRadius: "50%",
+                                    top: "10%",
+                                    right: "-10%",
+                                    backgroundColor: "red"
+                                }}></span>
+                            ))
+                        }
                         <MdForwardToInbox size={'25px'} color="white" className="" />
                     </div>
                     <div className="mx-3">
@@ -147,13 +176,26 @@ export default function Admin() {
                             </li>
                         </Link>
                         <hr className="mx-2" />
-                        <Link to='/emails'>
+                        <Link to='/emails' className="position-relative">
+                            {
+                                messages.map((message) => (
+                                    message.status === "unread" &&
+                                    <span className=" position-absolute" style={{
+                                        width: "10px",
+                                        height: "10px",
+                                        borderRadius: "50%",
+                                        top: "10%",
+                                        right: "10%",
+                                        backgroundColor: "red"
+                                    }}></span>
+                                ))
+                            }
                             <li className="d-flex gap-4 align-items-center mb-2 mx-2 rounded text-light"
                                 style={{
                                     backgroundColor: li_status[4] ? "#b8b8b89a" : "",
                                     justifyContent: sidebar ? "" : "center"
                                 }}>
-                                <MdSupportAgent color="white" size={"30px"} />
+                                <MdSupportAgent color="white" size={"28px"} />
                                 {
                                     sidebar && <p className="m-0">Emails</p>
                                 }
